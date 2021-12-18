@@ -1,7 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  content: [
+  purge: [
     "./src/**/*.html",
     "./src/**/*.js",
     "./src/**/*.jsx",
@@ -9,11 +9,11 @@ module.exports = {
     "./src/**/*.tsx",
     "./public/index.html",
   ],
-  purge: [],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
+      xs: '300px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
@@ -25,6 +25,7 @@ module.exports = {
       current: 'currentColor',
 
       black: colors.black,
+      lightBlack: '#707070',
       white: colors.white,
       gray: colors.coolGray,
       red: colors.red,
@@ -437,6 +438,7 @@ module.exports = {
       '5/6': '83.333333%',
       full: '100%',
       screen: '100vh',
+      min: 'min-content',
     }),
     inset: (theme, { negative }) => ({
       auto: 'auto',
