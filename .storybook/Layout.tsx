@@ -1,5 +1,5 @@
 import React from 'react';
-import 'assets/styles/tailwind.scss';
+import 'src/assets/styles/tailwind.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 // @ts-ignore

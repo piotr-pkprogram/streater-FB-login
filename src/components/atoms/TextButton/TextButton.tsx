@@ -1,11 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-enum BtnTypes {
-  Button = 'button',
-  SUBMIT = 'submit',
-  RESET = 'reset'
-}
+import { BtnTypes } from 'types/BtnTypes';
 
 type Props = {
   classNames?: string;
@@ -19,8 +14,8 @@ type Props = {
 };
 
 const TextButton = ({
-  classNames,
-  type,
+  classNames = '',
+  type = BtnTypes.Button,
   to = '',
   onClick = () => {},
   isDark = false,
@@ -28,7 +23,7 @@ const TextButton = ({
   isRouterLink,
   children
 }: Props) => {
-  const className = `border-2 border-lightBlack p-2 text-sm xs:text-base hover:opacity-70 transition-opacity ${
+  const className = `border-2 border-lightBlack text-center p-2 text-sm xs:text-base hover:opacity-70 transition-opacity ${
     isDark ? 'bg-lightBlack text-white' : ''
   } ${classNames}`;
 

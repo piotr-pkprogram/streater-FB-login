@@ -9,13 +9,13 @@ const SimpleLogin = () => (
       <TextButton isRouterLink to="/guest">
         SZYBKIE ŻARCIE
       </TextButton>
-      <TextButton classNames="ml-2" isRouterLink to="/register">
+      <TextButton classNames="ml-2" isRouterLink to="/app/register">
         ZAREJESTRUJ
       </TextButton>
     </div>
     <p>
       <span>Masz już konto?</span>
-      <TextLink classNames="ml-3" isRouterLink to="/login">
+      <TextLink classNames="ml-3" isRouterLink to="/app/login">
         Zaloguj
       </TextLink>
     </p>
