@@ -9,7 +9,7 @@ const Logo = ({ isBig }: Props) => {
   const imageSize = isBig ? '' : 'w-14';
 
   return (
-    <div className="grid gap-2 justify-items-center items-center h-min w-max">
+    <div className="grid gap-2 justify-items-center items-center h-min w-max mt-3">
       <img className={imageSize} src={logo} alt="Logo Streaters" />
       <p className="font-bold">STREATERS</p>
     </div>

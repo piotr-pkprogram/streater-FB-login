@@ -10,24 +10,29 @@ import FacebookIcon from 'assets/img/facebook-icon.svg';
 
 type Props = {
   title: string;
-  handleSubmitForm?: HandleSubmitForm;
+  loginLink: string;
   children: JSX.Element | JSX.Element[];
+  handleSubmitForm?: HandleSubmitForm;
   className?: string;
+  handleGoToBack?: any;
 };
 
-const LoginViewWrapper = ({ title, handleSubmitForm, children, className }: Props) => {
+const LoginViewWrapper = ({
+  title,
+  handleSubmitForm,
+  loginLink,
+  className,
+  children,
+  handleGoToBack = () => history.back()
+}: Props) => {
   return (
     <Wrapper className={className}>
-      <BackBtn svg={backArrow} isRouterLink to="/app/choose-login" />
+      <BackBtn svg={backArrow} onClick={handleGoToBack} />
       <Logo />
       <p className="font-bold text-2xl">{title}</p>
       <p>
         <span>{title.includes('Logowanie') ? 'Nie masz jeszcze konta?' : 'Masz już konto?'}</span>
-        <TextLink
-          classNames="ml-3"
-          isRouterLink
-          to={`/app/${title.includes('Logowanie') ? 'register' : 'login'}`}
-        >
+        <TextLink classNames="ml-3" isRouterLink to={`/app/${loginLink}`}>
           {title.includes('Logowanie') ? 'Zarejestruj się' : 'Zaloguj się'}
         </TextLink>
       </p>

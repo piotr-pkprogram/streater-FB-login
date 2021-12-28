@@ -5,6 +5,9 @@ interface ErrorsInputs extends Object {
   surname?: string;
   email?: string;
   password?: string;
+  foodtruckName?: string;
+  city?: string;
+  contactPhone?: string;
 }
 
 export type RegisterState = {
@@ -12,6 +15,9 @@ export type RegisterState = {
   surname?: string;
   email?: string;
   password?: string;
+  foodtruckName?: string;
+  city?: string;
+  contactPhone?: string;
   errorsInputs?: ErrorsInputs;
 };
 

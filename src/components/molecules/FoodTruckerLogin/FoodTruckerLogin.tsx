@@ -5,10 +5,10 @@ const FoodTruckerLogin = () => (
   <div className="grid gap-4 w-max p-2 justify-items-center items-center">
     <p className="font-semibold text-lg">FOODTRUCKER</p>
     <div>
-      <TextButton isRouterLink isDark to="/app/login">
+      <TextButton isRouterLink isDark to="/app/foodtruck-login">
         Zaloguj
       </TextButton>
-      <TextButton classNames="ml-2" isRouterLink isDark to="/app/foodtracker-register">
+      <TextButton classNames="ml-2" isRouterLink isDark to="/app/foodtruck-register">
         ZAREJESTRUJ
       </TextButton>
     </div>

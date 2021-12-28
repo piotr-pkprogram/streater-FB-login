@@ -49,7 +49,7 @@ export const useForm = (initialValues: RegisterState | LoginState) => {
   const { validateEmpty, validateEmail, validatePasswd } = useValidators(handleThrowError);
 
   const handleInputChange = (e: ChangeInputEvent) => {
-    if (e.target.getAttribute('data-required')) {
+    if (e.target.getAttribute('data-required') === 'true') {
       validateEmpty(e.target);
       if (e.target.type === 'email') validateEmail(e.target);
       if (e.target.type === 'password') validatePasswd(e.target);
@@ -72,7 +72,7 @@ export const useForm = (initialValues: RegisterState | LoginState) => {
     const formInputs = e.target.querySelectorAll('input');
 
     formInputs.forEach((input) => {
-      if (input.getAttribute('data-required')) {
+      if (input.getAttribute('data-required') === 'true') {
         validateEmpty(input);
         if (input.type === 'email') validateEmail(input);
         if (input.type === 'password') validatePasswd(input);

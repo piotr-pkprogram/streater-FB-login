@@ -4,7 +4,8 @@ import bgLoginImage from 'assets/img/background-login-page.svg';
 import IconButton from 'components/atoms/IconButton/IconButton';
 
 export const Wrapper = styled.div.attrs({
-  className: 'h-full grid gap-2 justify-items-center content-center max-w-full relative'
+  className:
+    'h-full grid gap-2 justify-items-center max-w-full relative items-center content-center min-h-screen'
 })`
   background-image: url(${() => bgLoginImage});
   background-size: auto 100%;
@@ -28,7 +29,3 @@ export const StyledSpan = styled.span.attrs({
     width: 65px;
   }
 `;
-
-export const ErrorP = styled.p.attrs({
-  className: 'text-red-500 text-xs px-3 py-1 font-semibold'
-})``;

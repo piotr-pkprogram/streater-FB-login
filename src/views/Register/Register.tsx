@@ -24,7 +24,12 @@ const Register = () => {
   } = useForm(InitialState);
 
   return (
-    <LoginViewWrapper className="gap-6" title="Rejestracja" handleSubmitForm={handleSubmitForm}>
+    <LoginViewWrapper
+      className="gap-6"
+      title="Rejestracja"
+      handleSubmitForm={handleSubmitForm}
+      loginLink="login"
+    >
       <Input
         type="text"
         name="name"

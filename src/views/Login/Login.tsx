@@ -19,8 +19,15 @@ const Login = () => {
     handleSubmitForm
   } = useForm(InitialState);
 
+  const loginLink = location.pathname.includes('foodtruck') ? 'foodtruck-register' : 'register';
+
   return (
-    <LoginViewWrapper className="gap-4" title="Logowanie" handleSubmitForm={handleSubmitForm}>
+    <LoginViewWrapper
+      className="gap-4"
+      title="Logowanie"
+      handleSubmitForm={handleSubmitForm}
+      loginLink={loginLink}
+    >
       <Input
         type="email"
         name="email"

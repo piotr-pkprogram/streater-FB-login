@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import ChooseLogin from 'views/ChooseLogin/ChooseLogin';
 import Register from 'views/Register/Register';
 import Login from 'views/Login/Login';
+import FoodtruckerRegister from 'views/FoodtrackerRegister/FoodtruckerRegister';
 
 const Root = () => {
   return (
@@ -13,6 +14,8 @@ const Root = () => {
           <Route path="choose-login" element={<ChooseLogin />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="foodtruck-login" element={<Login />} />
+          <Route path="foodtruck-register" element={<FoodtruckerRegister />} />
         </Route>
       </Routes>
     </Router>
