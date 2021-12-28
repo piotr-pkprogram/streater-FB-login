@@ -15,10 +15,8 @@ export const Wrapper = styled.div.attrs({
 export const BackBtn = styled(IconButton).attrs({ className: 'absolute top-3 left-3' })``;
 
 export const StyledForm = styled.form.attrs({
-  className: 'grid gap-2 p-1 w-full'
-})`
-  max-width: 258px;
-`;
+  className: 'grid gap-2 p-1 w-full justify-center'
+})``;
 
 export const StyledSpan = styled.span.attrs({
   className:

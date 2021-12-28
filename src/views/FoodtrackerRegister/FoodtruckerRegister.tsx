@@ -139,6 +139,9 @@ const FoodtruckerRegister = () => {
           data-required="true"
         />
         <ErrorP id="error-surname">{errorsInputs?.contactPhone}</ErrorP>
+        <p className="w-full text-sm font-normal mb-2">
+          Resztę danych możesz podać po rejestracji.
+        </p>
       </InputsWrapper>
       <TextButton
         classNames={isFirstStepVisible ? '' : 'hidden'}
