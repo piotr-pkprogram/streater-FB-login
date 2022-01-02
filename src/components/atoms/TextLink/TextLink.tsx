@@ -10,7 +10,7 @@ enum BtnTypes {
 type Props = {
   classNames?: string;
   type?: BtnTypes;
-  to: string;
+  to?: string;
   isExternalLink?: boolean;
   isRouterLink?: boolean;
   onClick?: any;
@@ -18,15 +18,15 @@ type Props = {
 };
 
 const TextLink = ({
-  classNames,
+  classNames = '',
   type,
-  to,
+  to = '',
   isExternalLink,
   isRouterLink,
   onClick,
   children
 }: Props) => {
-  const className = `text-blue-400 font-semibold text-sm xs:text-base hover:opacity-70 transition-opacity ${classNames}`;
+  const className = `font-semibold text-sm xs:text-base hover:opacity-70 transition-opacity ${classNames}`;
 
   if (isExternalLink)
     return (

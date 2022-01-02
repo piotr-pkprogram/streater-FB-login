@@ -32,7 +32,7 @@ const LoginViewWrapper = ({
       <p className="font-bold text-2xl">{title}</p>
       <p>
         <span>{title.includes('Logowanie') ? 'Nie masz jeszcze konta?' : 'Masz już konto?'}</span>
-        <TextLink classNames="ml-3" isRouterLink to={`/app/${loginLink}`}>
+        <TextLink classNames="ml-3 text-blue-400" isRouterLink to={`/app/${loginLink}`}>
           {title.includes('Logowanie') ? 'Zarejestruj się' : 'Zaloguj się'}
         </TextLink>
       </p>

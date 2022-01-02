@@ -6,7 +6,7 @@ const SimpleLogin = () => (
   <div className="grid gap-4 w-max p-2 justify-items-center items-center">
     <p className="font-semibold text-lg">SMAKOSZ</p>
     <div>
-      <TextButton isRouterLink to="/guest">
+      <TextButton isRouterLink to="/app/guest">
         SZYBKIE ŻARCIE
       </TextButton>
       <TextButton classNames="ml-2" isRouterLink to="/app/register">
