@@ -26,6 +26,7 @@ module.exports = {
       orange: colors.orange,
       amber: colors.amber,
       yellow: colors.yellow,
+      gold: '#FFC92B',
       lime: colors.lime,
       green: colors.green,
       emerald: colors.emerald,
@@ -114,7 +115,9 @@ module.exports = {
       down_to_top: 'down_to_top 300ms cubic-bezier(.6,-0.28,.74,.05) both',
       burger_move: 'burger_move 300ms cubic-bezier(.6,-0.28,.74,.05) both, burger_bg_change 200ms 500ms ease-in both',
       top_to_down: 'down_to_top 300ms cubic-bezier(.6,-0.28,.74,.05) reverse both',
-      burger_back: 'burger_bg_change 200ms cubic-bezier(.6,-0.28,.74,.05) reverse both, burger_move 300ms 500ms ease-out reverse both'
+      burger_back: 'burger_bg_change 200ms cubic-bezier(.6,-0.28,.74,.05) reverse both, burger_move 300ms 500ms cubic-bezier(.6,-0.28,.74,.05) both',
+      left_to_right: 'left_to_right 400ms ease both',
+      right_to_left: 'left_to_right 400ms ease reverse both'
     },
     aspectRatio: {
       auto: 'auto',
@@ -588,6 +591,14 @@ module.exports = {
           transform: 'translateY(0)'
         }
       },
+      left_to_right: {
+        from: {
+          transform: 'translateX(-100%)'
+        },
+        to: {
+          transform: 'translateX(0)'
+        }
+      },
       burger_move: {
         '0%': {
           transform: 'translateY(0)'
@@ -647,6 +658,7 @@ module.exports = {
       fit: 'fit-content'
     }),
     maxWidth: ({ theme, breakpoints }) => ({
+      ...theme('spacing'),
       none: 'none',
       0: '0rem',
       xs: '20rem',

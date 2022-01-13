@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Input } from 'components/atoms/Input/Input';
 
 export const Wrapper = styled.div.attrs({
-  className: 'absolute bottom-0 w-full'
+  className: 'fixed bottom-0 w-full'
 })``;
 
 export const SearchWrapper = styled.div.attrs({

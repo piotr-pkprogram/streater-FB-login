@@ -10,7 +10,7 @@ const Root = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/app/choose-login" />} />
+        <Route path="/" element={<Navigate to="/app/guest" />} />
         <Route path="/app">
           <Route path="choose-login" element={<ChooseLogin />} />
           <Route path="register" element={<Register />} />

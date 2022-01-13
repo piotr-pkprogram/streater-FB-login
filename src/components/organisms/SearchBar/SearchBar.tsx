@@ -6,7 +6,12 @@ import dark_search from 'assets/img/dark-search.svg';
 import burger from 'assets/img/burger.svg';
 import TextLink from 'components/atoms/TextLink/TextLink';
 
-const SearchBar = () => {
+type Props = {
+  isMapVisible: boolean;
+  switchListMapVisible: () => void;
+};
+
+const SearchBar = ({ isMapVisible, switchListMapVisible }: Props) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const searchWrapper = useRef<HTMLDivElement>(null);
   const burgerWrapper = useRef<HTMLDivElement>(null);
@@ -40,8 +45,8 @@ const SearchBar = () => {
 
       setTimeout(() => {
         searchBar.classList.remove('translate-y-0');
-        burgerBtn.classList.remove('-translate-y-24', 'bg-lightBlack');
         searchBar.classList.add('translate-y-full');
+        burgerBtn.classList.remove('-translate-y-24', 'bg-lightBlack');
         searchBar.classList.remove('animate-top_to_down');
         burgerBtn.classList.remove('animate-burger_back');
         setIsOpenSearch(false);
@@ -55,7 +60,9 @@ const SearchBar = () => {
         <IconButton svg={search} onClick={handleOpen} />
       </SearchNav>
       <SearchWrapper ref={searchWrapper}>
-        <TextLink classNames="text-white justify-self-start">Zmień widok na listę</TextLink>
+        <TextLink classNames="text-white justify-self-start" onClick={switchListMapVisible}>
+          Zmień widok na {isMapVisible ? 'listę' : 'mapę'}
+        </TextLink>
         <img src={dark_search} alt="" className="absolute bottom-5 left-6" />
         <StyledInput placeholder="Szukaj" />
       </SearchWrapper>

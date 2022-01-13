@@ -6,6 +6,8 @@ export default {
   component: SearchBar
 };
 
-const Template = (args: object) => <SearchBar {...args} />;
+const Template = (args: object) => (
+  <SearchBar isMapVisible={false} switchListMapVisible={() => {}} {...args} />
+);
 
 export const Default = Template.bind([]);

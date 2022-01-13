@@ -14,7 +14,7 @@ type Props = {
   isExternalLink?: boolean;
   isRouterLink?: boolean;
   onClick?: any;
-  children?: string;
+  children?: string | string[];
 };
 
 const TextLink = ({

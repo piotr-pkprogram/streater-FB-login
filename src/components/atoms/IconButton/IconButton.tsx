@@ -10,6 +10,7 @@ type Props = {
   onClick?: any;
   className?: string;
   isRouterLink?: boolean;
+  isExternalLink?: boolean;
 };
 
 const IconButton = ({
@@ -17,6 +18,7 @@ const IconButton = ({
   type = BtnTypes.Button,
   to = '',
   isRouterLink,
+  isExternalLink,
   onClick,
   className = ''
 }: Props) => {
@@ -25,6 +27,17 @@ const IconButton = ({
       <Link className={`w-max h-auto hover:opacity-70 transition-opacity ${className}`} to={to}>
         <img src={svg} alt="" />
       </Link>
+    );
+  else if (isExternalLink)
+    return (
+      <a
+        className={`w-max h-auto hover:opacity-70 transition-opacity ${className}`}
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={svg} alt="" />
+      </a>
     );
   else
     return (
@@ -36,10 +49,6 @@ const IconButton = ({
         <img src={svg} alt="" />
       </button>
     );
-};
-
-IconButton.propTypes = {
-  img: PropTypes.string
 };
 
 export default IconButton;
