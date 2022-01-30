@@ -15,7 +15,7 @@ const SimpleLogin = () => (
     </div>
     <p>
       <span>Masz już konto?</span>
-      <TextLink classNames="ml-3 text-blue-400" isRouterLink to="/app/login">
+      <TextLink className="ml-3 text-blue-400" isRouterLink to="/app/login">
         Zaloguj
       </TextLink>
     </p>

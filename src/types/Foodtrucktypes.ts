@@ -64,4 +64,6 @@ export type FoodtruckState = {
   isOpen: boolean;
   comments: Array<Comments>;
   rating: number;
+  searchingValue?: string;
+  cityCountryOrDistrict?: string;
 };

@@ -33,7 +33,7 @@ export const menuLinks = [
   {
     id: uuidv4(),
     to: '/app/about-us',
-    text: 'O Nas',
+    text: 'O Aplikacji',
     svg: about
   }
 ];

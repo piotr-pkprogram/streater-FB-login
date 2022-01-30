@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledBtn } from './TextLink.styles';
 import { Link } from 'react-router-dom';
 
 enum BtnTypes {
@@ -8,17 +9,17 @@ enum BtnTypes {
 }
 
 type Props = {
-  classNames?: string;
+  className?: string;
   type?: BtnTypes;
   to?: string;
   isExternalLink?: boolean;
   isRouterLink?: boolean;
   onClick?: any;
-  children?: string | string[];
+  children?: JSX.Element[] | string | string[];
 };
 
 const TextLink = ({
-  classNames = '',
+  className = '',
   type,
   to = '',
   isExternalLink,
@@ -26,25 +27,23 @@ const TextLink = ({
   onClick,
   children
 }: Props) => {
-  const className = `font-semibold text-sm xs:text-base hover:opacity-70 transition-opacity ${classNames}`;
-
   if (isExternalLink)
     return (
-      <a className={className} href={to} target="_blank" rel="noopener noreferrer">
+      <StyledBtn as="a" className={className} href={to} target="_blank" rel="noopener noreferrer">
         {children}
-      </a>
+      </StyledBtn>
     );
   else if (isRouterLink)
     return (
-      <Link className={className} to={to}>
+      <StyledBtn as={Link} className={className} to={to}>
         {children}
-      </Link>
+      </StyledBtn>
     );
   else
     return (
-      <button className={className} type={type} onClick={onClick}>
+      <StyledBtn className={className} type={type} onClick={onClick}>
         {children}
-      </button>
+      </StyledBtn>
     );
 };
 

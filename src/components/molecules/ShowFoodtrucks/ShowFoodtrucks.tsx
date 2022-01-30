@@ -7,7 +7,6 @@ import L from 'leaflet';
 import dotMaker from 'assets/img/dotIcon.svg';
 import foodtrucks_icon from 'assets/img/foodtrucks-icon.svg';
 import { FoodtruckState } from 'types/Foodtrucktypes';
-import axios from 'axios';
 
 const icons = {};
 const fetchIcon = (count: number | string, size: number) => {
@@ -32,8 +31,7 @@ const markerIcon = L.icon({
   shadowAnchor: [18, 30]
 });
 
-const ShowFoodtrucks = () => {
-  const [foodtrucks, setFoodtrucks] = useState<FoodtruckState[]>([]);
+const ShowFoodtrucks = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
   const maxZoom = 22;
   const [bounds, setBounds] = useState<BBox>([]);
   const [zoom, setZoom] = useState(12);
@@ -65,22 +63,6 @@ const ShowFoodtrucks = () => {
       map.off('move', onMove);
     };
   }, [map, onMove]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        let foodtrucks = await axios.get('http://77.55.210.170:5001/api/Foodtruck');
-        foodtrucks = foodtrucks.data.filter(
-          (foodtruck: FoodtruckState) => foodtruck.name !== 'string'
-        );
-        // @ts-ignore
-        setFoodtrucks(foodtrucks);
-      } catch (e) {
-        setFoodtrucks([]);
-        console.log(e);
-      }
-    })();
-  }, []);
 
   points = foodtrucks.map(({ id, menu, location }) => ({
     type: 'Feature',

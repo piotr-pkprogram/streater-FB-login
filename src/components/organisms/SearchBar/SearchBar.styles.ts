@@ -8,7 +8,7 @@ export const Wrapper = styled.div.attrs({
 
 export const SearchWrapper = styled.div.attrs({
   className:
-    'bg-lightBlack w-full py-2 px-3 grid grid-flow-col gap-2 absolute z-10 bottom-0 translate-y-full'
+    'bg-lightBlack w-full py-2 px-3 grid grid-flow-col gap-2 absolute z-30 bottom-0 translate-y-full'
 })``;
 
 export const SearchNav = styled.div.attrs({
@@ -21,4 +21,14 @@ export const BurgerWrapper = styled.div.attrs({
 
 export const StyledInput = styled(Input).attrs({
   className: 'row-start-2 pl-14'
+})``;
+
+export const SearchResults = styled.div.attrs({
+  className: 'absolute bg-white shadow-md bottom-32 rounded-lg min-w-72 left-5'
+})`
+  visibility: ${({ isVisible }: { isVisible: boolean }) => (isVisible ? 'visible' : 'hidden')};
+`;
+
+export const Settings = styled.img.attrs({
+  className: 'absolute bottom-7 right-8 cursor-pointer hover:opacity-70 transition-opacity'
 })``;

@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import ShowFoodtrucks from 'components/molecules/ShowFoodtrucks/ShowFoodtrucks';
+import { setLocation } from 'helpers/setLocation';
+// @ts-ignore
+import { Map } from '@types/leaflet';
+import { FoodtruckState } from 'types/Foodtrucktypes';
 
 type Props = {
   setPosition: (latlng: { lat: number; lng: number; alt?: number }) => void;
 };
+
+export let defaultMap: Map;
 
 const MapEvents = ({ setPosition }: Props) => {
   const map = useMapEvents({
@@ -16,14 +22,14 @@ const MapEvents = ({ setPosition }: Props) => {
     },
     locationfound(e) {
       setPosition(e.latlng);
-      localStorage.setItem('location', JSON.stringify(e.latlng));
-      map.flyTo(e.latlng, map.getZoom());
+      setLocation(e.latlng, map);
     }
   });
+  defaultMap = map;
   return null;
 };
 
-const FoodtrucksMap = () => {
+const FoodtrucksMap = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
   const location = localStorage.getItem('location');
   const [position, setPosition] = useState(
     location ? JSON.parse(location) : { lat: 52.232855, lng: 20.9211124 }
@@ -40,7 +46,7 @@ const FoodtrucksMap = () => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
-      <ShowFoodtrucks />
+      <ShowFoodtrucks foodtrucks={foodtrucks} />
     </MapContainer>
   );
 };

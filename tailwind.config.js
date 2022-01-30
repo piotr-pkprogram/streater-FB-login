@@ -90,6 +90,7 @@ module.exports = {
       12: '3rem',
       14: '3.5rem',
       16: '4rem',
+      18: '4.5rem',
       20: '5rem',
       24: '6rem',
       28: '7rem',
@@ -113,8 +114,10 @@ module.exports = {
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       bounce: 'bounce 1s infinite',
       down_to_top: 'down_to_top 300ms cubic-bezier(.6,-0.28,.74,.05) both',
+      down_to_top_filter: 'small_to_large 350ms ease both',
       burger_move: 'burger_move 300ms cubic-bezier(.6,-0.28,.74,.05) both, burger_bg_change 200ms 500ms ease-in both',
       top_to_down: 'down_to_top 300ms cubic-bezier(.6,-0.28,.74,.05) reverse both',
+      top_to_down_filter: 'small_to_large 350ms ease reverse both',
       burger_back: 'burger_bg_change 200ms cubic-bezier(.6,-0.28,.74,.05) reverse both, burger_move 300ms 500ms cubic-bezier(.6,-0.28,.74,.05) both',
       left_to_right: 'left_to_right 400ms ease both',
       right_to_left: 'left_to_right 400ms ease reverse both'
@@ -614,6 +617,16 @@ module.exports = {
         '100%': {
           backgroundColor: 'rgba(60, 60, 60, 100)'
         }
+      },
+      small_to_large: {
+        '0%': {
+          transform: 'translateY(100%) scale(0.1)',
+          borderRadius: "100%",
+        },
+        '100%': {
+          transform: 'translateY(0) scale(1)',
+          borderRadius: "0"
+        }
       }
     },
     letterSpacing: {
@@ -687,13 +700,14 @@ module.exports = {
       max: 'max-content',
       fit: 'fit-content'
     },
-    minWidth: {
+    minWidth: ({ theme }) => ({
+      ...theme('spacing'),
       0: '0px',
       full: '100%',
       min: 'min-content',
       max: 'max-content',
       fit: 'fit-content'
-    },
+    }),
     objectPosition: {
       bottom: 'bottom',
       center: 'center',
