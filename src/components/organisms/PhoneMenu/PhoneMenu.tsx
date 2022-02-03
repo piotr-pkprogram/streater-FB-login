@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Wrapper, MenuWrapper } from './PhoneMenu.styles';
 import IconButton from 'components/atoms/IconButton/IconButton';
 import close from 'assets/img/close.svg';
-import logo from 'assets/img/logo-white.svg';
+import logo from 'assets/img/icon.svg';
 import facebook from 'assets/img/facebook.svg';
 import twitter from 'assets/img/twitter.svg';
 import instagram from 'assets/img/instagram.svg';

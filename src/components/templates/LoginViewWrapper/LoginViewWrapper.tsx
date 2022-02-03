@@ -2,7 +2,7 @@ import React from 'react';
 import { Wrapper, BackBtn, StyledForm, StyledSpan } from './LoginViewWrapper.styles';
 import Logo from 'components/atoms/Logo/Logo';
 import TextLink from 'components/atoms/TextLink/TextLink';
-import backArrow from 'assets/img/backArrow.svg';
+import back from 'assets/img/next.svg';
 import { HandleSubmitForm } from 'types/FormTypes';
 import IconButton from 'components/atoms/IconButton/IconButton';
 import GoogleIcon from 'assets/img/google-icon.svg';
@@ -27,12 +27,12 @@ const LoginViewWrapper = ({
 }: Props) => {
   return (
     <Wrapper className={className}>
-      <BackBtn svg={backArrow} onClick={handleGoToBack} />
+      <BackBtn svg={back} onClick={handleGoToBack} />
       <Logo />
       <p className="font-bold text-2xl">{title}</p>
       <p>
         <span>{title.includes('Logowanie') ? 'Nie masz jeszcze konta?' : 'Masz już konto?'}</span>
-        <TextLink className="ml-3 text-blue-400" isRouterLink to={`/app/${loginLink}`}>
+        <TextLink className="ml-2" isRouterLink to={`/app/${loginLink}`}>
           {title.includes('Logowanie') ? 'Zarejestruj się' : 'Zaloguj się'}
         </TextLink>
       </p>

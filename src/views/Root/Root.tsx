@@ -5,6 +5,7 @@ import Register from 'views/Register/Register';
 import Login from 'views/Login/Login';
 import FoodtruckerRegister from 'views/FoodtrackerRegister/FoodtruckerRegister';
 import Guest from 'views/Guest/Guest';
+import Contact from 'views/Contact/Contact';
 
 const Root = () => {
   return (
@@ -18,6 +19,7 @@ const Root = () => {
           <Route path="foodtruck-login" element={<Login />} />
           <Route path="foodtruck-register" element={<FoodtruckerRegister />} />
           <Route path="guest" element={<Guest />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
     </Router>

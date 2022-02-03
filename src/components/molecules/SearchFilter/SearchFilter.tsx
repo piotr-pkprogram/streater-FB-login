@@ -52,7 +52,7 @@ const SearchFilter = forwardRef(
       <Wrapper ref={ref}>
         <IconButton
           svg={back}
-          className={'rotate-180 scale-150 absolute top-3 left-3'}
+          className={'rotate-180 scale-150 absolute top-3 left-2 w-8'}
           onClick={setVisible}
         />
         <StyledLink className="mt-10" onClick={switchFilterVisible}>

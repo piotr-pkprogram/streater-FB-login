@@ -24,14 +24,14 @@ const IconButton = ({
 }: Props) => {
   if (isRouterLink)
     return (
-      <Link className={`w-max h-auto hover:opacity-70 transition-opacity ${className}`} to={to}>
+      <Link className={`hover:opacity-70 transition-opacity ${className}`} to={to}>
         <img src={svg} alt="" />
       </Link>
     );
   else if (isExternalLink)
     return (
       <a
-        className={`w-max h-auto hover:opacity-70 transition-opacity ${className}`}
+        className={`hover:opacity-70 transition-opacity ${className}`}
         href={to}
         target="_blank"
         rel="noopener noreferrer"
@@ -42,7 +42,7 @@ const IconButton = ({
   else
     return (
       <button
-        className={`w-max h-auto hover:opacity-70 transition-opacity ${className}`}
+        className={`hover:opacity-70 transition-opacity ${className}`}
         type={type}
         onClick={onClick}
       >

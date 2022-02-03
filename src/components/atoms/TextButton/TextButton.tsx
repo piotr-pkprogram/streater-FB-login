@@ -23,7 +23,7 @@ const TextButton = ({
   isRouterLink,
   children
 }: Props) => {
-  const className = `border-2 border-lightBlack text-center p-2 text-sm xs:text-base hover:opacity-70 transition-opacity ${
+  const className = `inline-block border-2 border-lightBlack text-center p-2 text-sm xs:text-base hover:opacity-70 transition-opacity ${
     isDark ? 'bg-lightBlack text-white' : ''
   } ${classNames}`;
 

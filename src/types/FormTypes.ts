@@ -8,6 +8,7 @@ interface ErrorsInputs extends Object {
   foodtruckName?: string;
   city?: string;
   contactPhone?: string;
+  message?: string;
 }
 
 export type RegisterState = {
@@ -18,11 +19,22 @@ export type RegisterState = {
   foodtruckName?: string;
   city?: string;
   contactPhone?: string;
+  message?: string;
   errorsInputs?: ErrorsInputs;
 };
 
 export type LoginState = {
+  name?: string;
   email?: string;
+  password?: string;
+  message?: string;
+  errorsInputs?: ErrorsInputs;
+};
+
+export type ContactFormState = {
+  name?: string;
+  email?: string;
+  message?: string;
   password?: string;
   errorsInputs?: ErrorsInputs;
 };

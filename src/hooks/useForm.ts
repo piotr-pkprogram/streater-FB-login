@@ -6,12 +6,16 @@ import {
   ReducerAction,
   LoginState,
   SubmitFormEvent,
-  FnSendForm
+  FnSendForm,
+  ContactFormState
 } from 'types/FormTypes';
 import { useValidators } from './useValidators';
 
 // @ts-ignore
-const formReducer: Reducer<RegisterState | LoginState, ReducerAction> = (state, action) => {
+const formReducer: Reducer<RegisterState | ContactFormState | LoginState, ReducerAction> = (
+  state,
+  action
+) => {
   switch (action.type) {
     case ActionTypes.inputChange:
       return {
@@ -35,7 +39,7 @@ const formReducer: Reducer<RegisterState | LoginState, ReducerAction> = (state, 
   }
 };
 
-export const useForm = (initialValues: RegisterState | LoginState) => {
+export const useForm = (initialValues: RegisterState | ContactFormState | LoginState) => {
   const [formValues, dispatch] = useReducer(formReducer, initialValues);
 
   const handleThrowError = (inputName: string, errorMessage: string) => {
@@ -69,7 +73,9 @@ export const useForm = (initialValues: RegisterState | LoginState) => {
   const handleSubmitForm = (e: SubmitFormEvent, callbackSendForm: FnSendForm) => {
     e.preventDefault();
     let isFormValid;
-    const formInputs = e.target.querySelectorAll('input');
+    const formInputs = e.target.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+      'input, textarea'
+    );
 
     formInputs.forEach((input) => {
       if (input.getAttribute('data-required') === 'true') {
@@ -81,11 +87,7 @@ export const useForm = (initialValues: RegisterState | LoginState) => {
 
     const errorsMessages = e.target.querySelectorAll('p');
     errorsMessages.forEach((msg) => {
-      if (msg.innerHTML === '') {
-        isFormValid = true;
-      } else {
-        isFormValid = false;
-      }
+      isFormValid = msg.innerHTML === '';
     });
 
     // const formState = {

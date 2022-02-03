@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from 'components/organisms/SearchBar/SearchBar';
 import { StyledIcon } from './Guest.styles';
-import logo from 'assets/img/logo-white.svg';
+import logo from 'assets/img/icon.svg';
 import FoodtrucksList from 'components/organisms/FoodtrucksList/FoodtrucksList';
 import ReactDOM from 'react-dom';
 import PhoneMenu from 'components/organisms/PhoneMenu/PhoneMenu';
@@ -74,7 +74,7 @@ const Guest = () => {
               <MenuLink key={id} to={to} text={text} svg={svg} />
             ))}
           </PhoneMenu>
-          <StyledIcon svg={logo} />
+          <StyledIcon svg={logo} isRouterLink to="/" />
           <SearchBar
             isMapVisible={isMapVisible}
             switchListMapVisible={switchListMapVisible}
