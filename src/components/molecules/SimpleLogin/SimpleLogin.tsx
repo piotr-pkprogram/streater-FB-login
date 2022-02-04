@@ -5,11 +5,11 @@ import TextLink from 'components/atoms/TextLink/TextLink';
 const SimpleLogin = () => (
   <div className="grid gap-2 w-max p-2 justify-items-center items-center">
     <p className="font-semibold text-lg">SMAKOSZ</p>
-    <div>
-      <TextButton classNames="w-32" isRouterLink to="/app/guest">
+    <div className="grid gap-2 xs:gap-0 xs:block">
+      <TextButton classNames="w-36" isRouterLink to="/app/guest">
         SZYBKIE ŻARCIE
       </TextButton>
-      <TextButton classNames="ml-2 w-32" isRouterLink to="/app/register">
+      <TextButton classNames="xs:ml-2 w-36" isRouterLink to="/app/register">
         ZAREJESTRUJ
       </TextButton>
     </div>

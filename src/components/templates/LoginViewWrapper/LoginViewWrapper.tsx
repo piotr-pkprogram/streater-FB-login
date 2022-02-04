@@ -30,7 +30,7 @@ const LoginViewWrapper = ({
       <BackBtn svg={back} onClick={handleGoToBack} />
       <Logo />
       <p className="font-bold text-2xl">{title}</p>
-      <p>
+      <p className="text-center">
         <span>{title.includes('Logowanie') ? 'Nie masz jeszcze konta?' : 'Masz już konto?'}</span>
         <TextLink className="ml-2" isRouterLink to={`/app/${loginLink}`}>
           {title.includes('Logowanie') ? 'Zarejestruj się' : 'Zaloguj się'}

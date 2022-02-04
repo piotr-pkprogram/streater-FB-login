@@ -17,7 +17,7 @@ export const StyledForm = styled.form.attrs({
 
 export const StyledSpan = styled.span.attrs({
   className:
-    "mt-2 text-xs text-lightBlack font-semibold flex justify-center items-center w-full relative before:content-[''] before:border-solid before:border-gold before:border before:absolute before:left-0 after:content-[''] after:border-solid after:border-gold after:border after:absolute after:right-0"
+    "mt-2 text-xs text-lightBlack font-semibold flex justify-center items-center w-full relative xxs:before:content-[''] xxs:before:border-solid xxs:before:border-gold xxs:before:border xxs:before:absolute xxs:before:left-0 xxs:after:content-[''] xxs:after:border-solid xxs:after:border-gold xxs:after:border xxs:after:absolute xxs:after:right-0"
 })`
   &:before,
   &:after {

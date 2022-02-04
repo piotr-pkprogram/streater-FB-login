@@ -52,7 +52,7 @@ const PhoneMenu = ({ children }: Props) => {
       <Wrapper ref={menuWrapper}>
         <MenuWrapper>
           <nav className="ml-2 mt-20 grid gap-2 h-max">{children}</nav>
-          <div className="flex flex-wrap gap-2 p-2 items-center h-min self-end mb-20">
+          <div className="flex flex-wrap gap-1 xs:gap-2 xs:p-2 items-center h-min self-end mb-20">
             <IconButton svg={facebook} isExternalLink />
             <IconButton svg={twitter} isExternalLink />
             <IconButton svg={instagram} isExternalLink />
