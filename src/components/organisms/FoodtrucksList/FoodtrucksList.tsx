@@ -3,7 +3,13 @@ import locationSVG from 'assets/img/location.svg';
 import FoodtruckListItem from 'components/molecules/FoodtruckListItem/FoodtruckListItem';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 
-const FoodtrucksList = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
+const FoodtrucksList = ({
+  foodtrucks,
+  isMapVisible
+}: {
+  foodtrucks: FoodtruckState[];
+  isMapVisible: boolean;
+}) => {
   const [city, setCity] = useState('');
 
   const getCityName = async () => {
@@ -37,7 +43,13 @@ const FoodtrucksList = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
       </div>
       <div className="mb-28">
         {foodtrucks.map((foodtruck) => {
-          return <FoodtruckListItem key={foodtruck.id} foodtruck={foodtruck} />;
+          return (
+            <FoodtruckListItem
+              isMapVisible={isMapVisible}
+              key={foodtruck.id}
+              foodtruck={foodtruck}
+            />
+          );
         })}
       </div>
     </div>

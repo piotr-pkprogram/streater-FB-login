@@ -436,6 +436,7 @@ module.exports = {
     },
     gridColumn: {
       auto: 'auto',
+      '1/2': '1/3',
       'span-1': 'span 1 / span 1',
       'span-2': 'span 2 / span 2',
       'span-3': 'span 3 / span 3',

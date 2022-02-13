@@ -11,6 +11,7 @@ import FoodtrucksMap from 'components/organisms/FoodtrucksMap/FoodtrucksMap';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import { FiltersTypes, SortModes, useFoodtrucks } from 'hooks/useFoodtrucks';
 import { foodtruckExample } from 'data/foodtruck';
+import { useQuery } from 'hooks/useQuery';
 
 export type FilterProp = {
   type: FiltersTypes;
@@ -25,6 +26,7 @@ const Guest = () => {
   const [currentFoodtruck, setCurrentFoodtruck] = useState<FoodtruckState>(foodtruckExample);
   const { getFoodtrucks, getSearchingFoodtrucks, filterFoodtrucks, sortFoodtrucks } =
     useFoodtrucks();
+  const query = useQuery();
 
   const body = document.querySelector('body') as HTMLBodyElement;
 
@@ -53,6 +55,7 @@ const Guest = () => {
 
   useEffect(() => {
     (async () => {
+      setIsMapVisible(query.get('isMapVisible') !== 'false');
       const foodtrucks = await getFoodtrucks();
       if (filter) {
         // @ts-ignore
@@ -94,7 +97,7 @@ const Guest = () => {
       {isMapVisible ? (
         <FoodtrucksMap setCurrentFoodtruck={setCurrentFoodtruck} foodtrucks={foodtrucks} />
       ) : (
-        <FoodtrucksList foodtrucks={foodtrucks} />
+        <FoodtrucksList isMapVisible={isMapVisible} foodtrucks={foodtrucks} />
       )}
     </>
   );

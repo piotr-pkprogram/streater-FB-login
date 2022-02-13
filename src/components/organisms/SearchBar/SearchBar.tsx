@@ -240,7 +240,9 @@ const SearchBar = ({
             svg={burger}
             onClick={handleClose}
             isRouterLink={currentFoodtruck.name !== 'Nazwa foodtrucka'}
-            to={`/app/${currentFoodtruck.id}`}
+            to={`/app/${currentFoodtruck.name
+              .toLowerCase()
+              .replaceAll(' ', '-')}?isMapVisible=${isMapVisible}`}
           />
         </BurgerWrapper>
         <FoodtruckDetails foodtruck={currentFoodtruck as FoodtruckState} ref={details} />

@@ -10,6 +10,8 @@ type Props = {
   className?: string;
   isRouterLink?: boolean;
   isExternalLink?: boolean;
+  imgClassName?: string;
+  children?: JSX.Element | string;
 };
 
 const IconButton = ({
@@ -19,12 +21,14 @@ const IconButton = ({
   isRouterLink,
   isExternalLink,
   onClick,
-  className = ''
+  className = '',
+  imgClassName = '',
+  children
 }: Props) => {
   if (isRouterLink)
     return (
       <Link className={`hover:opacity-70 transition-opacity ${className}`} to={to}>
-        <img src={svg} alt="" />
+        <img className={imgClassName} src={svg} alt="" />
       </Link>
     );
   else if (isExternalLink)
@@ -35,7 +39,7 @@ const IconButton = ({
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img src={svg} alt="" />
+        <img className={imgClassName} src={svg} alt="" />
       </a>
     );
   else
@@ -45,7 +49,8 @@ const IconButton = ({
         type={type}
         onClick={onClick}
       >
-        <img src={svg} alt="" />
+        <img className={imgClassName} src={svg} alt="" />
+        {children}
       </button>
     );
 };

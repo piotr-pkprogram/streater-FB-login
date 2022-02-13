@@ -56,7 +56,9 @@ export const useFoodtrucks = () => {
 
   const getSingleFoodtruck = useCallback(async (id: string) => {
     const foodtrucks = await getFoodtrucks();
-    return foodtrucks.find((foodtruck: FoodtruckState) => foodtruck.id === id);
+    return foodtrucks.find(
+      (foodtruck: FoodtruckState) => foodtruck.name.toLowerCase().replaceAll(' ', '-') === id
+    );
   }, []);
 
   const getSearchingFoodtrucks = useCallback(async (inputValue) => {
