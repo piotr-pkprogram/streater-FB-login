@@ -1,7 +1,7 @@
 import React from 'react';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import StarRating from 'components/atoms/StarRating/StarRating';
-import locationSVG from 'assets/img/location.svg';
+import locationSVG from 'assets/img/black-location.svg';
 import money from 'assets/img/money.svg';
 import dish from 'assets/img/dish.jpg';
 import { Wrapper } from './FoodtruckListItem.styles';
@@ -25,7 +25,7 @@ const FoodtruckListItem = ({ foodtruck }: Props) => {
   ]).getLatLng();
 
   return (
-    <Wrapper to={`/api/foodtrucks/${foodtruck.name}`}>
+    <Wrapper to={`/app/${foodtruck.id}`}>
       <img
         className="w-16 rounded-2xl"
         src={foodtruck.pictures[0] === 'string' ? dish : foodtruck.pictures[0]}
@@ -42,8 +42,8 @@ const FoodtruckListItem = ({ foodtruck }: Props) => {
           {`${(parseInt(from.distanceTo(to).toFixed(0)) / 1000).toFixed(1)} km`}
         </div>
       </div>
-      <div className="justify-self-end mr-4 text-base text-center">
-        {foodtruck.menu.kitchenType[0].name ? foodtruck.menu.kitchenType[0].name : 'tajska'}
+      <div className="justify-self-end mr-4 text-base grid justify-items-end">
+        {foodtruck.menu.kitchenType[0] ? foodtruck.menu.kitchenType[0] : 'Tajska'}
         <img className="h-4" src={money} alt="" />
       </div>
     </Wrapper>

@@ -3,10 +3,11 @@ import { FaStar } from 'react-icons/fa';
 
 type Props = {
   rating: number;
+  ratingColor?: string;
   readonly?: boolean;
 };
 
-const StarRating = ({ rating, readonly = false }: Props) => {
+const StarRating = ({ rating, ratingColor = '#3C3C3C', readonly = false }: Props) => {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(0);
   const stars = Array(5).fill(0);
@@ -26,10 +27,10 @@ const StarRating = ({ rating, readonly = false }: Props) => {
   const setColor = (index: number) =>
     readonly
       ? rating > index
-        ? '#3C3C3C'
+        ? ratingColor
         : '#ccc'
       : (hoverValue || currentValue) > index
-      ? '#3C3C3C'
+      ? ratingColor
       : '#ccc';
 
   return (

@@ -5,7 +5,6 @@ import useSupercluster from 'use-supercluster';
 import { Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import dotMaker from 'assets/img/dotIcon.svg';
-import foodtrucks_icon from 'assets/img/foodtrucks-icon.svg';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 
 const icons = {};
@@ -15,7 +14,7 @@ const fetchIcon = (count: number | string, size: number) => {
     // @ts-ignore
     icons[count] = L.divIcon({
       className: '',
-      html: `<div class="cluster-marker bg-lightBlack flex flex-wrap text-gold border-gold border-solid border-2 justify-center items-center rounded-full max-w-6 max-h-6" style="width: ${size}px; height: ${size}px;">
+      html: `<div class="cluster-marker bg-lightBlack cursor-pointer flex flex-wrap text-gold border-gold border-solid border-2 justify-center items-center rounded-full max-w-6 max-h-6" style="width: ${size}px; height: ${size}px;">
         ${count}
       </div>`
     });
@@ -26,12 +25,15 @@ const fetchIcon = (count: number | string, size: number) => {
 
 const markerIcon = L.icon({
   iconUrl: dotMaker,
-  shadowUrl: foodtrucks_icon,
-  iconSize: [8, 8],
-  shadowAnchor: [18, 30]
+  iconSize: [60, 60]
 });
 
-const ShowFoodtrucks = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
+type Props = {
+  foodtrucks: FoodtruckState[];
+  setCurrentFoodtruck: (currentFoodtruck: FoodtruckState) => void;
+};
+
+const ShowFoodtrucks = ({ foodtrucks, setCurrentFoodtruck }: Props) => {
   const maxZoom = 22;
   const [bounds, setBounds] = useState<BBox>([]);
   const [zoom, setZoom] = useState(12);
@@ -66,7 +68,7 @@ const ShowFoodtrucks = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
 
   points = foodtrucks.map(({ id, menu, location }) => ({
     type: 'Feature',
-    properties: { cluster: false, foodtruckId: id, category: menu.kitchenType[0].name },
+    properties: { cluster: false, foodtruckId: id, category: menu.kitchenType[0] },
     geometry: {
       type: 'Point',
       coordinates: [
@@ -115,6 +117,12 @@ const ShowFoodtrucks = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
             key={`foodtruck-${cluster.properties.foodtruckId}`}
             position={[latitude, longitude]}
             icon={markerIcon}
+            eventHandlers={{
+              click: () => {
+                const foodtruck = foodtrucks.find((el) => el.id === cluster.properties.foodtruckId);
+                setCurrentFoodtruck(foodtruck as FoodtruckState);
+              }
+            }}
           />
         );
       })}

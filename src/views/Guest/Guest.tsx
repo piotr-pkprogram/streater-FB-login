@@ -10,17 +10,19 @@ import MenuLink from 'components/molecules/MenuLink/MenuLink';
 import FoodtrucksMap from 'components/organisms/FoodtrucksMap/FoodtrucksMap';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import { FiltersTypes, SortModes, useFoodtrucks } from 'hooks/useFoodtrucks';
+import { foodtruckExample } from 'data/foodtruck';
 
 export type FilterProp = {
   type: FiltersTypes;
-  value: string;
+  value: string | string[];
 };
 
 const Guest = () => {
   const [isMapVisible, setIsMapVisible] = useState(true);
   const [foodtrucks, setFoodtrucks] = useState<FoodtruckState[]>([]);
-  const [filter, setFilter] = useState<FilterProp>();
+  const [filter, setFilter] = useState<FilterProp | null>();
   const [SortMode, setSortMode] = useState<SortModes>(SortModes.CHOOSE);
+  const [currentFoodtruck, setCurrentFoodtruck] = useState<FoodtruckState>(foodtruckExample);
   const { getFoodtrucks, getSearchingFoodtrucks, filterFoodtrucks, sortFoodtrucks } =
     useFoodtrucks();
 
@@ -83,12 +85,14 @@ const Guest = () => {
             setFilter={setFilter}
             SortMode={SortMode}
             setSortMode={setSortMode}
+            currentFoodtruck={currentFoodtruck}
+            setCurrentFoodtruck={setCurrentFoodtruck}
           />
         </>,
         body
       )}
       {isMapVisible ? (
-        <FoodtrucksMap foodtrucks={foodtrucks} />
+        <FoodtrucksMap setCurrentFoodtruck={setCurrentFoodtruck} foodtrucks={foodtrucks} />
       ) : (
         <FoodtrucksList foodtrucks={foodtrucks} />
       )}

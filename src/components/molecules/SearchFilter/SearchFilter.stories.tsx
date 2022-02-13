@@ -9,7 +9,6 @@ export default {
 
 const Template = (args: object) => (
   <SearchFilter
-    foodtrucks={[]}
     setFilter={() => {}}
     setVisible={() => {}}
     SortMode={SortModes.CHOOSE}

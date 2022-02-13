@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import axios from 'axios';
-import { FoodtruckState } from 'types/Foodtrucktypes';
+import { FoodtruckState, KitchenType } from 'types/Foodtrucktypes';
 import L from 'leaflet';
 
 export enum FiltersTypes {
@@ -16,52 +16,90 @@ export enum SortModes {
   'AMOUT_OF_RATES' = 'Ilość opini'
 }
 
+export const kitchens = [
+  'Pizza',
+  'Burgery',
+  'Azjatycka',
+  'Włoska',
+  'Indyjska',
+  'Vegańska',
+  'Vegetariańska',
+  'Keto',
+  'Paleo',
+  'Gluten_free'
+];
+
 export const useFoodtrucks = () => {
+  const getKitchenTypes = (kitchenTypes: KitchenType[]) => {
+    return kitchenTypes.map((kitchenType: KitchenType) => {
+      return kitchens[kitchenType - 1];
+    });
+  };
+
   const getFoodtrucks = useCallback(async () => {
     try {
-      let foodtrucks = await axios.get('http://77.55.210.170:5001/api/Foodtruck');
-      foodtrucks = foodtrucks.data.filter(
-        (foodtruck: FoodtruckState) => foodtruck.name !== 'string'
-      );
+      const foodtrucks = await axios.get('http://77.55.217.106:48391/api/Foodtruck');
+      let newFoodtrucks = foodtrucks.data.filter((foodtruck: FoodtruckState) => {
+        return foodtruck.name !== 'string';
+      });
+      newFoodtrucks = newFoodtrucks.map((foodtruck: FoodtruckState) => {
+        foodtruck.menu.kitchenType = getKitchenTypes(foodtruck.menu.kitchenType as KitchenType[]);
+        return foodtruck;
+      });
 
-      return foodtrucks;
+      return newFoodtrucks;
     } catch (e) {
       console.log(e);
       return [];
     }
   }, []);
 
+  const getSingleFoodtruck = useCallback(async (id: string) => {
+    const foodtrucks = await getFoodtrucks();
+    return foodtrucks.find((foodtruck: FoodtruckState) => foodtruck.id === id);
+  }, []);
+
   const getSearchingFoodtrucks = useCallback(async (inputValue) => {
     try {
-      let foodtrucks = await axios.get('http://77.55.210.170:5001/api/Foodtruck');
+      let foodtrucks = await getFoodtrucks();
 
-      foodtrucks = foodtrucks.data.filter((foodtruck: FoodtruckState) => {
+      foodtrucks = foodtrucks.filter((foodtruck: FoodtruckState) => {
         const { name, location } = foodtruck;
         foodtruck.cityCountryOrDistrict = location.address.city;
 
-        if (name !== 'string') {
-          if (name.includes(inputValue)) {
-            foodtruck.searchingValue = name;
-            return true;
-          } else if (inputValue.includes(location.address.city)) {
-            foodtruck.searchingValue = location.address.city;
-            foodtruck.cityCountryOrDistrict = `${location.address.street} ${location.address.houseNumber}`;
-            return true;
-          } else if (
-            `${location.address.street} ${location.address.houseNumber} ${location.address.city}`.includes(
-              inputValue
-            )
-          ) {
-            foodtruck.searchingValue = `${location.address.street} ${location.address.houseNumber}`;
-            return true;
-          } else if (
-            location.address.country.includes(inputValue) ||
-            location.address.district.includes(inputValue)
-          ) {
-            foodtruck.searchingValue = name;
-            foodtruck.cityCountryOrDistrict = `${location.address.district} ${location.address.country}`;
-            return true;
-          }
+        if (
+          name.toLowerCase().includes(inputValue.toLowerCase()) ||
+          inputValue.toLowerCase().includes(name.toLowerCase())
+        ) {
+          foodtruck.searchingValue = name;
+          return true;
+        } else if (inputValue.toLowerCase().includes(location.address.city.toLowerCase())) {
+          foodtruck.searchingValue = location.address.city;
+          foodtruck.cityCountryOrDistrict = `${location.address.street} ${location.address.houseNumber}`;
+          return true;
+        } else if (
+          `ul. ${location.address.street} ${location.address.houseNumber} ${location.address.city}`
+            .toLowerCase()
+            .includes(inputValue.toLowerCase())
+        ) {
+          foodtruck.searchingValue = `${location.address.street} ${location.address.houseNumber}`;
+          return true;
+        } else if (
+          location.address.country.toLowerCase().includes(inputValue.toLowerCase()) ||
+          location.address.district.toLowerCase().includes(inputValue.toLowerCase())
+        ) {
+          foodtruck.searchingValue = name;
+          foodtruck.cityCountryOrDistrict = `${location.address.district} ${location.address.country}`;
+          return true;
+        } else if (
+          foodtruck.menu.kitchenType.join(', ').toLowerCase().includes(inputValue.toLowerCase())
+        ) {
+          const category = foodtruck.menu.kitchenType.findIndex((el) => {
+            if (typeof el === 'string') return el.includes(inputValue);
+          });
+          foodtruck.searchingValue = foodtruck.menu.kitchenType[category] as string;
+          foodtruck.cityCountryOrDistrict = name;
+          return true;
         } else {
           return false;
         }
@@ -102,10 +140,12 @@ export const useFoodtrucks = () => {
           });
           return filterFoodtrucks;
         case FiltersTypes.kitchen_type:
+          console.log(filters);
           filterFoodtrucks = foodtrucks.filter(({ menu }) => {
             for (let i = 0; i <= menu.kitchenType.length; i++) {
-              if (filters.includes(menu.kitchenType[i].name)) return true;
+              if (filters.includes(`${menu.kitchenType[i]}`.toLowerCase())) return true;
             }
+            return false;
           });
           return filterFoodtrucks;
         default:
@@ -151,7 +191,7 @@ export const useFoodtrucks = () => {
         return foodtrucks;
       case SortModes.AMOUT_OF_RATES:
         sortedFoodtrucks = foodtrucks.sort((a, b) =>
-          a.comments.length >= b.comments.length ? 0 : 1
+          a.comments.length >= b.comments.length ? -1 : 1
         );
         return sortedFoodtrucks;
     }
@@ -168,7 +208,7 @@ export const useFoodtrucks = () => {
 
     try {
       const data = await fetch(
-        `http://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.lat}&lon=${coordinates.lng}&zoom=18&addressdetails=1`
+        `http://nominatim.openstreetmap.org/search?format=jsonv2&lat=${coordinates.lat}&lon=${coordinates.lng}&zoom=18&addressdetails=1`
       ).then((data) => data.json());
 
       return data.address;
@@ -182,13 +222,9 @@ export const useFoodtrucks = () => {
 
     try {
       const data = await fetch(
-        `http://nominatim.openstreetmap.org/reverse?format=json&street=${`${location.address.street} ${location.address.houseNumber}`}&city=${
-          location.address.city
-        }&country=${location.address.country}&state=${location.address.district}&postalCode=${
-          location.address.zipcode
-        }&addressdetails=1`
+        `http://nominatim.openstreetmap.org/reverse?format=jsonv2&street=${location.address.street} ${location.address.houseNumber}&city=${location.address.city}&country=${location.address.country}&state=${location.address.district}&postalCode=${location.address.zipcode}&addressdetails=1`
       ).then((data) => data.json());
-      return { lat: data.lat, lng: data.lng };
+      return { lat: data.lat, lng: data.lon };
     } catch (e) {
       console.log(e);
     }
@@ -200,6 +236,7 @@ export const useFoodtrucks = () => {
     filterFoodtrucks,
     sortFoodtrucks,
     getFoodtruckLocation,
-    getFoodtruckAddress
+    getFoodtruckAddress,
+    getSingleFoodtruck
   };
 };

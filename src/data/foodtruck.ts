@@ -1,6 +1,7 @@
 import dish from 'assets/img/dish.jpg';
+import { FoodtruckState } from 'types/Foodtrucktypes';
 
-export const foodtruckExample = {
+export const foodtruckExample: FoodtruckState = {
   id: '06294cef-7368-41bf-99e6-de0683834a07',
   name: 'Nazwa foodtrucka',
   description: '',
@@ -24,29 +25,36 @@ export const foodtruckExample = {
       openingMinute: 0,
       closingHour: 22,
       closingMinute: 0
-    }
-  },
-  openingWeekdays: {
-    isOpen: true,
-    weekDay: 0
+    },
+    openingWeekdays: [
+      {
+        isOpen: true,
+        weekDay: 0
+      }
+    ]
   },
   menu: {
     dish: [
       {
-        name: 'Danie',
+        name: 'Pad Thai kurczak',
         description: 'Składniki',
-        prize: 27,
+        prize: 22,
+        weight: 0,
+        volume: 0,
+        quantity: 0,
+        isAvailable: true
+      },
+      {
+        name: 'Stir Fry',
+        description: 'Składniki',
+        prize: 26,
         weight: 0,
         volume: 0,
         quantity: 0,
         isAvailable: true
       }
     ],
-    kitchenType: [
-      {
-        name: 'Tajska'
-      }
-    ]
+    kitchenType: ['Tajska']
   },
   pictures: [dish],
   isOpen: true,

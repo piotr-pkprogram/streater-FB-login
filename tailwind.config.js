@@ -4,8 +4,8 @@ module.exports = {
   darkMode: 'media', // or 'class'
   theme: {
     screens: {
-      xxs: "240px",
-      xs: "315px",
+      xxs: '240px',
+      xs: '315px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
@@ -95,6 +95,7 @@ module.exports = {
       18: '4.5rem',
       20: '5rem',
       24: '6rem',
+      26: '6.5rem',
       28: '7rem',
       32: '8rem',
       36: '9rem',
@@ -107,7 +108,11 @@ module.exports = {
       64: '16rem',
       72: '18rem',
       80: '20rem',
-      96: '24rem'
+      96: '24rem',
+      97: '25.5rem',
+      98: '26rem',
+      99: '27rem',
+      100: '28rem'
     },
     animation: {
       none: 'none',
@@ -115,12 +120,17 @@ module.exports = {
       ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       bounce: 'bounce 1s infinite',
+      hidden: 'hidden 1s both',
+      appear: 'appear 1s both',
       down_to_top: 'down_to_top 300ms cubic-bezier(.6,-0.28,.74,.05) both',
       down_to_top_filter: 'small_to_large 350ms ease both',
-      burger_move: 'burger_move 300ms cubic-bezier(.6,-0.28,.74,.05) both, burger_bg_change 200ms 500ms ease-in both',
+      burger_move: 'burger_move 300ms cubic-bezier(.6,-0.28,.74,.05) both',
+      burger_move2: 'burger_move2 300ms cubic-bezier(.6,-0.28,.74,.05) both',
+      burger_move3: 'burger_move3 300ms cubic-bezier(.6,-0.28,.74,.05) both',
       top_to_down: 'down_to_top 300ms cubic-bezier(.6,-0.28,.74,.05) reverse both',
       top_to_down_filter: 'small_to_large 350ms ease reverse both',
-      burger_back: 'burger_bg_change 200ms cubic-bezier(.6,-0.28,.74,.05) reverse both, burger_move 300ms 500ms cubic-bezier(.6,-0.28,.74,.05) both',
+      burger_back: 'burger_move 300ms cubic-bezier(.6,-0.28,.74,.05) reverse both',
+      burger_back2: 'burger_move2 300ms cubic-bezier(.6,-0.28,.74,.05) reverse both',
       left_to_right: 'left_to_right 400ms ease both',
       right_to_left: 'left_to_right 400ms ease reverse both'
     },
@@ -588,6 +598,22 @@ module.exports = {
           animationTimingFunction: 'cubic-bezier(0,0,0.2,1)'
         }
       },
+      hidden: {
+        '0%': {
+          opacity: 1
+        },
+        '100%': {
+          opacity: 0
+        }
+      },
+      appear: {
+        '0%': {
+          opacity: 0
+        },
+        '100%': {
+          opacity: 1
+        }
+      },
       down_to_top: {
         from: {
           transform: 'translateY(100%)'
@@ -609,25 +635,33 @@ module.exports = {
           transform: 'translateY(0)'
         },
         '100%': {
-          transform: 'translateY(-6rem)',
+          transform: 'translateY(-6.5rem)'
         }
       },
-      burger_bg_change: {
+      burger_move2: {
         '0%': {
-          backgroundColor: 'rgba(60, 60, 60, 0)'
+          transform: 'translateY(0)'
         },
         '100%': {
-          backgroundColor: 'rgba(60, 60, 60, 100)'
+          transform: 'translateY(-26rem)'
+        }
+      },
+      burger_move3: {
+        '0%': {
+          transform: 'translateY(0)'
+        },
+        '100%': {
+          transform: 'translateY(-28rem)'
         }
       },
       small_to_large: {
         '0%': {
           transform: 'translateY(100%) scale(0.1)',
-          borderRadius: "100%",
+          borderRadius: '100%'
         },
         '100%': {
           transform: 'translateY(0) scale(1)',
-          borderRadius: "0"
+          borderRadius: '0'
         }
       }
     },
@@ -694,14 +728,15 @@ module.exports = {
       prose: '65ch',
       ...breakpoints(theme('screens'))
     }),
-    minHeight: {
+    minHeight: ({ theme }) => ({
+      ...theme('spacing'),
       0: '0px',
       full: '100%',
       screen: '100vh',
       min: 'min-content',
       max: 'max-content',
       fit: 'fit-content'
-    },
+    }),
     minWidth: ({ theme }) => ({
       ...theme('spacing'),
       0: '0px',

@@ -3,6 +3,7 @@ import SearchBar from './SearchBar';
 import { SortModes, useFoodtrucks } from 'hooks/useFoodtrucks';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import { FilterProp } from 'views/Guest/Guest';
+import { foodtruckExample } from 'data/foodtruck';
 
 export default {
   title: 'components/organisms/SearchBar',
@@ -13,7 +14,7 @@ const handleSearch = ({ inputValue }: { inputValue?: string }) => {};
 
 const Template = (args: object) => {
   const [foodtrucks, setFoodtrucks] = useState<FoodtruckState[]>([]);
-  const [filter, setFilter] = useState<FilterProp>();
+  const [filter, setFilter] = useState<FilterProp | null>();
   const { getFoodtrucks } = useFoodtrucks();
 
   useEffect(() => {
@@ -33,6 +34,8 @@ const Template = (args: object) => {
       setFilter={setFilter}
       SortMode={SortModes.CHOOSE}
       setSortMode={() => {}}
+      currentFoodtruck={foodtruckExample}
+      setCurrentFoodtruck={(foodtruck) => {}}
       {...args}
     />
   );

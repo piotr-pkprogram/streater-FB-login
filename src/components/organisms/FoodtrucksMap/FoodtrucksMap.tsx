@@ -29,7 +29,12 @@ const MapEvents = ({ setPosition }: Props) => {
   return null;
 };
 
-const FoodtrucksMap = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
+type MapProps = {
+  foodtrucks: FoodtruckState[];
+  setCurrentFoodtruck: (currentFoodtruck: FoodtruckState) => void;
+};
+
+const FoodtrucksMap = ({ foodtrucks, setCurrentFoodtruck }: MapProps) => {
   const location = localStorage.getItem('location');
   const [position, setPosition] = useState(
     location ? JSON.parse(location) : { lat: 52.232855, lng: 20.9211124 }
@@ -46,7 +51,7 @@ const FoodtrucksMap = ({ foodtrucks }: { foodtrucks: FoodtruckState[] }) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
-      <ShowFoodtrucks foodtrucks={foodtrucks} />
+      <ShowFoodtrucks foodtrucks={foodtrucks} setCurrentFoodtruck={setCurrentFoodtruck} />
     </MapContainer>
   );
 };

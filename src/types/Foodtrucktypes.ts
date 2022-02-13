@@ -22,6 +22,12 @@ interface OpeningTime {
     closingHour: number;
     closingMinute: number;
   };
+  openingWeekdays: [
+    {
+      isOpen: boolean;
+      weekDay: number;
+    }
+  ];
 }
 
 interface Dish {
@@ -42,9 +48,18 @@ interface Comments {
   additionDate: Date;
 }
 
-type Name = {
-  name: string;
-};
+export enum KitchenType {
+  Pizza = 1,
+  Burgers = 2,
+  Asian = 3,
+  Italian = 4,
+  Indian = 5,
+  Vegan = 6,
+  Vegetarian = 7,
+  Keto = 8,
+  Paleo = 9,
+  Gluten_free = 10
+}
 
 export type FoodtruckState = {
   id: string;
@@ -52,13 +67,9 @@ export type FoodtruckState = {
   description: string;
   location: Location;
   openingTime: OpeningTime;
-  openingWeekdays: {
-    isOpen: boolean;
-    weekDay: number;
-  };
   menu: {
     dish: Array<Dish>;
-    kitchenType: Array<Name>;
+    kitchenType: Array<KitchenType> | Array<string>;
   };
   pictures: Array<string>;
   isOpen: boolean;

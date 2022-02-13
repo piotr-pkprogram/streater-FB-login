@@ -1,3 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
-    <path id="Icon_metro-location" d="M5,0A5,5,0,0,0,0,5c0,5,5,11,5,11s5-6,5-11A5,5,0,0,0,5,0ZM5,8.063A3.063,3.063,0,1,1,8.063,5,3.062,3.062,0,0,1,5,8.063ZM3.062,5A1.938,1.938,0,1,1,5,6.938,1.938,1.938,0,0,1,3.062,5Z" transform="translate(0 0)" fill="#111"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16">
+    <path id="Icon_metro-location" data-name="Icon metro-location" d="M5,0A5,5,0,0,0,0,5c0,5,5,11,5,11s5-6,5-11A5,5,0,0,0,5,0ZM5,8.063A3.063,3.063,0,1,1,8.063,5,3.062,3.062,0,0,1,5,8.063ZM3.062,5A1.938,1.938,0,1,1,5,6.938,1.938,1.938,0,0,1,3.062,5Z" transform="translate(0 0)" fill="#ffc92b"/>
 </svg>
