@@ -20,15 +20,15 @@ const FoodtruckListItem = ({ foodtruck, isMapVisible }: Props) => {
 
   const from = L.marker(location).getLatLng();
 
+  if (!foodtruck.link) foodtruck.link = foodtruck.id;
+
   const to = L.marker([
     foodtruck.location.coordinates.latitude,
     foodtruck.location.coordinates.longitude
   ]).getLatLng();
 
   return (
-    <Wrapper
-      to={`/app/${foodtruck.name.toLowerCase().replaceAll(' ', '-')}?isMapVisible=${isMapVisible}`}
-    >
+    <Wrapper to={`/app/${foodtruck.link}?isMapVisible=${isMapVisible}`}>
       <img
         className="w-16 rounded-2xl row-start-1 hidden xs:block"
         src={foodtruck.pictures[0] === 'string' ? dish : foodtruck.pictures[0]}

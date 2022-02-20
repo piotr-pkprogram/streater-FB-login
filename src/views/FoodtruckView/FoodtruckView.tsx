@@ -15,7 +15,7 @@ import { FoodtruckState } from 'types/Foodtrucktypes';
 import StarRating from 'components/atoms/StarRating/StarRating';
 import TextLink from 'components/atoms/TextLink/TextLink';
 import locationSVG from 'assets/img/location.svg';
-import dishImg from 'assets/img/dishImg.png';
+import foodtruckImg from 'assets/img/foodTruckImg.jpg';
 import { useQuery } from 'hooks/useQuery';
 
 const FoodtruckView = () => {
@@ -29,6 +29,7 @@ const FoodtruckView = () => {
   useEffect(() => {
     (async () => {
       const foodtruck = await getSingleFoodtruck(foodtruckLink as string);
+      if (!foodtruck.link) foodtruck.link = foodtruck.id;
       setCurrentFoodtruck(foodtruck);
     })();
   }, [foodtruckLink]);
@@ -46,7 +47,11 @@ const FoodtruckView = () => {
         </>,
         body
       )}
-      <ImageWrapper />
+      <ImageWrapper
+        style={{
+          backgroundImage: `url(${currentFoodtruck?.image ? currentFoodtruck.image : foodtruckImg})`
+        }}
+      />
       <FoodtruckWrapper>
         <IconButton
           imgClassName="h-4"
@@ -68,7 +73,7 @@ const FoodtruckView = () => {
             <TextLink
               className="!text-lightBlack"
               isRouterLink
-              to={`/app/${currentFoodtruck?.name.toLowerCase().replaceAll(' ', '-')}/reviews`}
+              to={`/app/${currentFoodtruck?.link}/reviews`}
             >
               Sprawdź opinie
             </TextLink>
@@ -88,7 +93,11 @@ const FoodtruckView = () => {
                   <p className="text-sm">{dish.description}</p>
                   <span className="text-xl text-gold font-semibold">{dish.prize} zł</span>
                 </div>
-                <img className="rounded-xl h-24 w-24 max-w-none" src={dishImg} alt="" />
+                {dish.image ? (
+                  <img className="rounded-xl h-24 w-24 max-w-none" src={dish.image} alt="" />
+                ) : (
+                  ''
+                )}
               </Dish>
             );
           })}

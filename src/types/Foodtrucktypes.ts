@@ -38,6 +38,7 @@ interface Dish {
   volume: number;
   quantity: number;
   isAvailable: boolean;
+  image?: string;
 }
 
 interface Comments {
@@ -77,4 +78,6 @@ export type FoodtruckState = {
   rating: number;
   searchingValue?: string;
   cityCountryOrDistrict?: string;
+  link?: string;
+  image?: string;
 };

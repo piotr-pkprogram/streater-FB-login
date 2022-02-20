@@ -55,10 +55,14 @@ export const useFoodtrucks = () => {
   }, []);
 
   const getSingleFoodtruck = useCallback(async (id: string) => {
+    let foodtruck: FoodtruckState;
     const foodtrucks = await getFoodtrucks();
-    return foodtrucks.find(
-      (foodtruck: FoodtruckState) => foodtruck.name.toLowerCase().replaceAll(' ', '-') === id
-    );
+
+    foodtruck = foodtrucks.find((foodtruck: FoodtruckState) => foodtruck?.link === id);
+
+    if (!foodtruck) foodtruck = foodtrucks.find((foodtruck: FoodtruckState) => foodtruck.id === id);
+
+    return foodtruck;
   }, []);
 
   const getSearchingFoodtrucks = useCallback(async (inputValue) => {
@@ -139,6 +143,14 @@ export const useFoodtrucks = () => {
                   minutes < openingTime.openingHours.closingMinute)
               );
             }
+          });
+          filterFoodtrucks = filterFoodtrucks.filter(({ openingTime }) => {
+            const weekDay = new Date().getDay();
+            const openingWeekday = openingTime.openingWeekdays.find(
+              (day) => day.weekDay === weekDay
+            );
+
+            return openingWeekday?.isOpen;
           });
           return filterFoodtrucks;
         case FiltersTypes.kitchen_type:

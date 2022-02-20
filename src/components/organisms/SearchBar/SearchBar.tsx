@@ -209,7 +209,7 @@ const SearchBar = ({
           <IconButton svg={search} onClick={handleOpen} />
         </SearchNav>
         <SearchWrapper {...getComboboxProps()} aria-label="searchWrapper">
-          <TextLink className="text-white justify-self-start" onClick={switchListMapVisible}>
+          <TextLink className="text-gold justify-self-start" onClick={switchListMapVisible}>
             Zmień widok na {isMapVisible ? 'listę' : 'mapę'}
           </TextLink>
           <img src={dark_search} alt="" className="absolute bottom-5 left-6" />
@@ -240,9 +240,7 @@ const SearchBar = ({
             svg={burger}
             onClick={handleClose}
             isRouterLink={currentFoodtruck.name !== 'Nazwa foodtrucka'}
-            to={`/app/${currentFoodtruck.name
-              .toLowerCase()
-              .replaceAll(' ', '-')}?isMapVisible=${isMapVisible}`}
+            to={`/app/${currentFoodtruck.link}?isMapVisible=${isMapVisible}`}
           />
         </BurgerWrapper>
         <FoodtruckDetails foodtruck={currentFoodtruck as FoodtruckState} ref={details} />

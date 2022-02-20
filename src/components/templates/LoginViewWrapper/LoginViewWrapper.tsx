@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
+// @ts-ignore
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { Wrapper, BackBtn, StyledForm, StyledSpan } from './LoginViewWrapper.styles';
 import Logo from 'components/atoms/Logo/Logo';
 import TextLink from 'components/atoms/TextLink/TextLink';
@@ -25,6 +29,58 @@ const LoginViewWrapper = ({
   children,
   handleGoToBack = () => history.back()
 }: Props) => {
+  const googleLogin = useRef<HTMLDivElement>(null);
+  const facebookLogin = useRef<HTMLDivElement>(null);
+
+  const responseFacebook = (response: Response) => {
+    console.log(response);
+  };
+
+  const responseGoogle = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    console.log(response);
+  };
+
+  useEffect(() => {
+    if (loginLink !== 'foodtruck-login')
+      ReactDOM.render(
+        <FacebookLogin
+          appId="229793412653614"
+          fields="name,email,picture"
+          render={(renderProps: { onClick: any; disabled: boolean | undefined }) => (
+            <IconButton
+              className="cursor-pointer"
+              svg={FacebookIcon}
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            />
+          )}
+          callback={responseFacebook}
+        />,
+        document.querySelector('.facebook-login')
+      );
+  }, [facebookLogin.current]);
+
+  useEffect(() => {
+    if (loginLink !== 'foodtruck-login')
+      ReactDOM.render(
+        <GoogleLogin
+          clientId="281605504347-ql6i3m24ubq9pi3atsljkgi2d04atn2h.apps.googleusercontent.com"
+          render={(renderProps) => (
+            <IconButton
+              className="cursor-pointer"
+              svg={GoogleIcon}
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            />
+          )}
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+        />,
+        document.querySelector('.google-login')
+      );
+  }, [googleLogin.current]);
+
   return (
     <Wrapper className={className}>
       <BackBtn svg={back} onClick={handleGoToBack} />
@@ -38,11 +94,17 @@ const LoginViewWrapper = ({
       </p>
       <StyledForm onSubmit={handleSubmitForm}>
         {children}
-        <StyledSpan>Lub zaloguj się z</StyledSpan>
-        <div className="flex justify-center gap-4 w-full mt-3">
-          <IconButton svg={GoogleIcon} />
-          <IconButton svg={FacebookIcon} />
-        </div>
+        {loginLink !== 'foodtruck-login' ? (
+          <>
+            <StyledSpan>Lub zaloguj się z</StyledSpan>
+            <div className="flex justify-center gap-4 w-full mt-3">
+              <div className="google-login" ref={googleLogin} />
+              <div className="facebook-login" ref={facebookLogin} />
+            </div>{' '}
+          </>
+        ) : (
+          ''
+        )}
       </StyledForm>
     </Wrapper>
   );

@@ -11,6 +11,7 @@ type Props = {
   isRouterLink?: boolean;
   isExternalLink?: boolean;
   imgClassName?: string;
+  disabled?: boolean;
   children?: JSX.Element | string;
 };
 
@@ -23,6 +24,7 @@ const IconButton = ({
   onClick,
   className = '',
   imgClassName = '',
+  disabled,
   children
 }: Props) => {
   if (isRouterLink)
@@ -48,6 +50,7 @@ const IconButton = ({
         className={`hover:opacity-70 transition-opacity ${className}`}
         type={type}
         onClick={onClick}
+        disabled={disabled}
       >
         <img className={imgClassName} src={svg} alt="" />
         {children}

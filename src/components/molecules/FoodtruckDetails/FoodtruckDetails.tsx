@@ -48,7 +48,7 @@ const FoodtruckDetails = forwardRef(
             ).toFixed(1)} km`}</span>
           </div>
           <div className="grid gap-2 items-center">
-            <span className="text-lg text-white">Najpopularniejsze dania:</span>
+            <span className="text-lg text-white">Polecane dania:</span>
             {foodtruck.menu.dish.map((dish, index) => {
               if (1 >= index)
                 return (

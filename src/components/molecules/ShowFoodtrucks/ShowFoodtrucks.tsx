@@ -119,7 +119,10 @@ const ShowFoodtrucks = ({ foodtrucks, setCurrentFoodtruck }: Props) => {
             icon={markerIcon}
             eventHandlers={{
               click: () => {
-                const foodtruck = foodtrucks.find((el) => el.id === cluster.properties.foodtruckId);
+                const foodtruck = foodtrucks.find(
+                  (el) => el.id === cluster.properties.foodtruckId
+                ) as FoodtruckState;
+                if (!foodtruck.link) foodtruck.link = foodtruck.id;
                 setCurrentFoodtruck(foodtruck as FoodtruckState);
               }
             }}

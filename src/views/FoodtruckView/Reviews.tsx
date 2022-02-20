@@ -64,7 +64,7 @@ const Reviews = () => {
             <div className="grid gap-2 items-center">
               <span className="text-lg font-medium">{comment.title}</span>
               <p className="text-sm">{comment.body}</p>
-              <div className="grid grid-flow-col gap-2 items-center justify-items-end">
+              <div className="grid xsm:grid-flow-col gap-2 items-center xsm:justify-items-end">
                 <span className="font-semibold text-lightBlack justify-self-start">
                   {comment.author}
                 </span>
