@@ -122,7 +122,7 @@ const ShowFoodtrucks = ({ foodtrucks, setCurrentFoodtruck }: Props) => {
                 const foodtruck = foodtrucks.find(
                   (el) => el.id === cluster.properties.foodtruckId
                 ) as FoodtruckState;
-                if (!foodtruck.link) foodtruck.link = foodtruck.id;
+                if (!foodtruck.urlName) foodtruck.urlName = foodtruck.id;
                 setCurrentFoodtruck(foodtruck as FoodtruckState);
               }
             }}

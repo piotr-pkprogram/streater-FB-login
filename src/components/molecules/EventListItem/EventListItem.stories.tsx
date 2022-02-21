@@ -1,15 +1,15 @@
 import React from 'react';
-import HighlitedEvent from './HighlitedEvent';
+import EventListItem from './EventListItem';
 
 export default {
-  title: 'components/molecules/HighlitedEvent',
-  component: HighlitedEvent
+  title: 'components/molecules/EventListItem',
+  component: EventListItem
 };
 
 const Template = (args: object) => (
-  <HighlitedEvent
+  <EventListItem
     event={{
-      id: '6212663be2790b68afd78388',
+      id: '6213e22d483622eedafda3ab',
       foodTrucksIds: [
         '620604c0695224405dafa27e',
         '6207d855d42e2dc2057c2633',
@@ -100,7 +100,7 @@ const Template = (args: object) => (
         }
       ],
       rating: 4.5,
-      link: 'http://77.55.217.106:48391/api/FoodTruck/6212663be2790b68afd78388',
+      link: 'http://77.55.217.106:48391/api/FoodTruck/6213e22d483622eedafda3ab',
       image: 'string',
       urlName: 'string'
     }}

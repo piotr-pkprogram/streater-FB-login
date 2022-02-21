@@ -8,7 +8,7 @@ const EventsSearchBar = () => (
     <img className="w-8 h-8" src={searchBlack} alt="" />
     <input
       type="text"
-      className="text-xl font-medium placeholder:text-black focus:outline-none"
+      className="text-xl font-medium placeholder:text-black focus:outline-none w-full"
       placeholder="Szukaj"
     />
     <Settings src={settings} alt="" />

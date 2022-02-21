@@ -44,7 +44,7 @@ const Guest = () => {
     if (foodtrucks && filter) {
       // @ts-ignore
       const matchingFoodtrucks = filterFoodtrucks(foodtrucks, filter.type, filter.value);
-      const sortedFoodtrucks = sortFoodtrucks(matchingFoodtrucks, SortMode);
+      const sortedFoodtrucks = sortFoodtrucks(matchingFoodtrucks as FoodtruckState[], SortMode);
       setFoodtrucks(sortedFoodtrucks);
     } else if (foodtrucks) {
       // @ts-ignore
@@ -60,7 +60,7 @@ const Guest = () => {
       if (filter) {
         // @ts-ignore
         const matchingFoodtrucks = filterFoodtrucks(foodtrucks, filter.type, filter.value);
-        const sortedFoodtrucks = sortFoodtrucks(matchingFoodtrucks, SortMode);
+        const sortedFoodtrucks = sortFoodtrucks(matchingFoodtrucks as FoodtruckState[], SortMode);
         setFoodtrucks(sortedFoodtrucks);
       } else {
         // @ts-ignore

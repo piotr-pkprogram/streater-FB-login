@@ -28,8 +28,9 @@ const FoodtruckView = () => {
 
   useEffect(() => {
     (async () => {
-      const foodtruck = await getSingleFoodtruck(foodtruckLink as string);
-      if (!foodtruck.link) foodtruck.link = foodtruck.id;
+      // @ts-ignore
+      const foodtruck: FoodtruckState = await getSingleFoodtruck(foodtruckLink as string);
+      if (!foodtruck.urlName) foodtruck.urlName = foodtruck.id;
       setCurrentFoodtruck(foodtruck);
     })();
   }, [foodtruckLink]);
@@ -73,7 +74,7 @@ const FoodtruckView = () => {
             <TextLink
               className="!text-lightBlack"
               isRouterLink
-              to={`/app/${currentFoodtruck?.link}/reviews`}
+              to={`/app/${currentFoodtruck?.urlName}/reviews`}
             >
               Sprawdź opinie
             </TextLink>

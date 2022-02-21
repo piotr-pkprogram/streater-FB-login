@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import axios from 'axios';
+import axios, { Axios, AxiosResponse } from 'axios';
 import { FoodtruckState, KitchenType } from 'types/Foodtrucktypes';
 import L from 'leaflet';
 
@@ -29,13 +29,13 @@ export const kitchens = [
   'Gluten_free'
 ];
 
-export const useFoodtrucks = () => {
-  const getKitchenTypes = (kitchenTypes: KitchenType[]) => {
-    return kitchenTypes.map((kitchenType: KitchenType) => {
-      return kitchens[kitchenType - 1];
-    });
-  };
+export const getKitchenTypes = (kitchenTypes: KitchenType[]) => {
+  return kitchenTypes.map((kitchenType: KitchenType) => {
+    return kitchens[kitchenType - 1];
+  });
+};
 
+export const useFoodtrucks = () => {
   const getFoodtrucks = useCallback(async () => {
     try {
       const foodtrucks = await axios.get('http://77.55.217.106:48391/api/Foodtruck');
@@ -58,9 +58,17 @@ export const useFoodtrucks = () => {
     let foodtruck: FoodtruckState;
     const foodtrucks = await getFoodtrucks();
 
-    foodtruck = foodtrucks.find((foodtruck: FoodtruckState) => foodtruck?.link === id);
+    foodtruck = foodtrucks.find((foodtruck: FoodtruckState) => foodtruck?.urlName === id);
 
-    if (!foodtruck) foodtruck = foodtrucks.find((foodtruck: FoodtruckState) => foodtruck.id === id);
+    try {
+      if (!foodtruck)
+        foodtruck = await axios
+          .get(`http://77.55.217.106:48391/api/Foodtruck/id/${id}`)
+          .then((res: AxiosResponse<FoodtruckState>) => res.data);
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
 
     return foodtruck;
   }, []);
@@ -154,14 +162,20 @@ export const useFoodtrucks = () => {
           });
           return filterFoodtrucks;
         case FiltersTypes.kitchen_type:
-          console.log(filters);
-          filterFoodtrucks = foodtrucks.filter(({ menu }) => {
-            for (let i = 0; i <= menu.kitchenType.length; i++) {
-              if (filters.includes(`${menu.kitchenType[i]}`.toLowerCase())) return true;
-            }
-            return false;
-          });
-          return filterFoodtrucks;
+          if (typeof filters !== 'string') {
+            filters = filters?.filter((filter) => filter !== '');
+          }
+
+          if (filters.length > 0) {
+            filterFoodtrucks = foodtrucks.filter(({ menu }) => {
+              for (let i = 0; i <= menu.kitchenType.length; i++) {
+                if (filters.includes(`${menu.kitchenType[i]}`.toLowerCase())) return true;
+              }
+              return false;
+            });
+            return filterFoodtrucks;
+          }
+          return foodtrucks;
         default:
           throw Error('such filter cannot be found');
       }

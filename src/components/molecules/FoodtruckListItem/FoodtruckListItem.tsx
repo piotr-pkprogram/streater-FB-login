@@ -20,7 +20,7 @@ const FoodtruckListItem = ({ foodtruck, isMapVisible }: Props) => {
 
   const from = L.marker(location).getLatLng();
 
-  if (!foodtruck.link) foodtruck.link = foodtruck.id;
+  if (!foodtruck.urlName) foodtruck.urlName = foodtruck.id;
 
   const to = L.marker([
     foodtruck.location.coordinates.latitude,
@@ -28,10 +28,10 @@ const FoodtruckListItem = ({ foodtruck, isMapVisible }: Props) => {
   ]).getLatLng();
 
   return (
-    <Wrapper to={`/app/${foodtruck.link}?isMapVisible=${isMapVisible}`}>
+    <Wrapper to={`/app/${foodtruck.urlName}?isMapVisible=${isMapVisible}`}>
       <img
         className="w-16 rounded-2xl row-start-1 hidden xs:block"
-        src={foodtruck.pictures[0] === 'string' ? dish : foodtruck.pictures[0]}
+        src={foodtruck.image ? foodtruck.image : dish}
         alt=""
       />
       <div className="grid gap-1 row-start-1">

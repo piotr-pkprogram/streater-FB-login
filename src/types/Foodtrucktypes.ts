@@ -7,7 +7,7 @@ interface FoodtruckAddress {
   district: string;
 }
 
-interface Location {
+export interface Location {
   coordinates: {
     latitude: number;
     longitude: number;
@@ -15,22 +15,20 @@ interface Location {
   address: FoodtruckAddress;
 }
 
-interface OpeningTime {
+export interface OpeningTime {
   openingHours: {
     openingHour: number;
     openingMinute: number;
     closingHour: number;
     closingMinute: number;
   };
-  openingWeekdays: [
-    {
-      isOpen: boolean;
-      weekDay: number;
-    }
-  ];
+  openingWeekdays: {
+    isOpen: boolean;
+    weekDay: number;
+  }[];
 }
 
-interface Dish {
+export interface Dish {
   name: string;
   description: string;
   prize: number;
@@ -38,10 +36,10 @@ interface Dish {
   volume: number;
   quantity: number;
   isAvailable: boolean;
-  image?: string;
+  image?: string | null;
 }
 
-interface Comments {
+export interface Comments {
   title: string;
   body: string;
   author: string;
@@ -80,4 +78,5 @@ export type FoodtruckState = {
   cityCountryOrDistrict?: string;
   link?: string;
   image?: string;
+  urlName?: string;
 };
