@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import axios, { Axios, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { FoodtruckState, KitchenType } from 'types/Foodtrucktypes';
 import L from 'leaflet';
 
@@ -39,15 +39,13 @@ export const useFoodtrucks = () => {
   const getFoodtrucks = useCallback(async () => {
     try {
       const foodtrucks = await axios.get('http://77.55.217.106:48391/api/Foodtruck');
-      let newFoodtrucks = foodtrucks.data.filter((foodtruck: FoodtruckState) => {
-        return foodtruck.name !== 'string';
-      });
-      newFoodtrucks = newFoodtrucks.map((foodtruck: FoodtruckState) => {
+      // let newFoodtrucks = foodtrucks.data.filter((foodtruck: FoodtruckState) => {
+      //   return foodtruck.name !== 'string';
+      // });
+      return foodtrucks.data.map((foodtruck: FoodtruckState) => {
         foodtruck.menu.kitchenType = getKitchenTypes(foodtruck.menu.kitchenType as KitchenType[]);
         return foodtruck;
       });
-
-      return newFoodtrucks;
     } catch (e) {
       console.log(e);
       return [];

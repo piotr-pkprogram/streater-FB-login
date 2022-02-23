@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import useSupercluster from 'use-supercluster';
 import { Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import dotMaker from 'assets/img/dotIcon.svg';
+import dotMaker from 'assets/img/foodtruckDotIcon.svg';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 
 const icons = {};

@@ -4,16 +4,13 @@ import eventImg from 'assets/img/Rectangle 60.jpg';
 import { getMonthName } from 'helpers/getMonthName';
 import { getWeekDay } from 'helpers/getWeekDay';
 import grayLocation from 'assets/img/gray-location.png';
-import { Link } from 'react-router-dom';
+import { Wrapper } from './EventListItem.styles';
 
 const EventListItem = ({ event }: { event: FoodtruckEvent }) => {
   if (!event.urlName || event.urlName === 'string') event.urlName = event.id;
 
   return (
-    <Link
-      to={`/app/events/${event.urlName}`}
-      className="grid grid-flow-col gap-2 w-max pb-4 pr-6 border-gold border-b mt-4"
-    >
+    <Wrapper to={`/app/events/${event.urlName}`}>
       <img
         src={event.image && event.image !== 'string' ? event.image : eventImg}
         alt=""
@@ -33,7 +30,7 @@ const EventListItem = ({ event }: { event: FoodtruckEvent }) => {
           </span>
         </div>
       </div>
-    </Link>
+    </Wrapper>
   );
 };
 

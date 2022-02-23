@@ -10,10 +10,10 @@ export const useFoodtruckEvents = () => {
       const foodtruckEvents = await axios.get(
         'http://77.55.217.106:48391/api/FoodTruckEvent/GetAll'
       );
-      // let newFoodtrucks = foodtruckEvents.data.filter((foodtruckEvt: FoodtruckEvent) => {
-      //   return foodtruckEvt.name !== 'string';
-      // });
-      return foodtruckEvents.data.map((foodtruckEvt: FoodtruckEvent) => {
+      let newEvents = foodtruckEvents.data.filter((foodtruckEvt: FoodtruckEvent) => {
+        return foodtruckEvt.name !== 'string';
+      });
+      return newEvents.map((foodtruckEvt: FoodtruckEvent) => {
         foodtruckEvt.menu.kitchenType = getKitchenTypes(
           foodtruckEvt.menu.kitchenType as KitchenType[]
         );
@@ -29,9 +29,9 @@ export const useFoodtruckEvents = () => {
 
   const getSingleEvent = useCallback(async (id: string) => {
     try {
-      const foodtruckEvent: FoodtruckEvent = await axios.get(
-        `http://77.55.217.106:48391/api/FoodTruckEvent/Get/id/${id}`
-      );
+      const foodtruckEvent: FoodtruckEvent = await axios
+        .get(`http://77.55.217.106:48391/api/FoodTruckEvent/Get/id/${id}`)
+        .then((res) => res.data);
 
       return foodtruckEvent;
     } catch (e) {

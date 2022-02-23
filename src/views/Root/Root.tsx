@@ -9,6 +9,7 @@ import Contact from 'views/Contact/Contact';
 import FoodtruckView from 'views/FoodtruckView/FoodtruckView';
 import Reviews from 'views/FoodtruckView/Reviews';
 import Events from 'views/Events/Events';
+import EventView from 'views/EventView/EventView';
 
 const Root = () => {
   return (
@@ -26,6 +27,7 @@ const Root = () => {
           <Route path="events" element={<Events />} />
           <Route path=":foodtruckLink" element={<FoodtruckView />} />
           <Route path=":foodtruckLink/reviews" element={<Reviews />} />
+          <Route path="events/:eventLink" element={<EventView />} />
         </Route>
       </Routes>
     </Router>
