@@ -13,12 +13,18 @@ import locationSVG from 'assets/img/location.svg';
 import foodtruckImg from 'assets/img/foodTruckImg.jpg';
 import { useQuery } from 'hooks/useQuery';
 import SimpleViewWrapper from 'components/templates/SimpleViewWrapper/SimpleViewWrapper';
+import { useCookies } from 'react-cookie';
 
 const FoodtruckView = () => {
   const [currentFoodtruck, setCurrentFoodtruck] = useState<FoodtruckState>();
   const { getSingleFoodtruck } = useFoodtrucks();
   const { foodtruckLink } = useParams();
   const query = useQuery();
+  const [cookies] = useCookies(['user-token']);
+
+  const link = cookies['user-token']
+    ? `/app/user-simple-dashboard?isMapVisible=${query.get('isMapVisible')}`
+    : `/app/guest?isMapVisible=${query.get('isMapVisible')}`;
 
   useEffect(() => {
     (async () => {
@@ -36,7 +42,7 @@ const FoodtruckView = () => {
         className="absolute top-2 left-3"
         svg={arrowDown}
         isRouterLink
-        to={`/app/guest?isMapVisible=${query.get('isMapVisible')}`}
+        to={link}
       />
       <IconButton imgClassName="h-6" className="absolute top-2 right-3" svg={heart} />
       <div className="grid gap-1 p-3 w-full pt-20">

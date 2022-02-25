@@ -21,7 +21,7 @@ import SearchResultsListItem from 'components/molecules/SearchResultsListItem/Se
 import { useCombobox } from 'downshift';
 import { defaultMap } from 'components/organisms/FoodtrucksMap/FoodtrucksMap';
 import SearchFilter from 'components/molecules/SearchFilter/SearchFilter';
-import { FilterProp } from 'views/Guest/Guest';
+import { FilterProp } from 'views/Dashboard/Dashboard';
 import ReactDOM from 'react-dom';
 import { SortModes } from 'hooks/useFoodtrucks';
 import FoodtruckDetails from 'components/molecules/FoodtruckDetails/FoodtruckDetails';

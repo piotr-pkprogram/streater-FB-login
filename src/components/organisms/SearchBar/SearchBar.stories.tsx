@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import { SortModes, useFoodtrucks } from 'hooks/useFoodtrucks';
 import { FoodtruckState } from 'types/Foodtrucktypes';
-import { FilterProp } from 'views/Guest/Guest';
+import { FilterProp } from 'views/Dashboard/Dashboard';
 import { foodtruckExample } from 'data/foodtruck';
 
 export default {

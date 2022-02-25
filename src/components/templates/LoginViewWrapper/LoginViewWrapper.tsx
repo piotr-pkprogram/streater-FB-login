@@ -11,6 +11,8 @@ import { HandleSubmitForm } from 'types/FormTypes';
 import IconButton from 'components/atoms/IconButton/IconButton';
 import GoogleIcon from 'assets/img/google-icon.svg';
 import FacebookIcon from 'assets/img/facebook-icon.svg';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   title: string;
@@ -31,20 +33,34 @@ const LoginViewWrapper = ({
 }: Props) => {
   const googleLogin = useRef<HTMLDivElement>(null);
   const facebookLogin = useRef<HTMLDivElement>(null);
+  const [cookies, setCookie] = useCookies(['user-token']);
+  const navigate = useNavigate();
 
   const responseFacebook = (response: Response) => {
     console.log(response);
   };
 
-  const responseGoogle = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-    console.log(response);
+  const responseGoogle = (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    // @ts-ignore
+    const authData = res?.getAuthResponse();
+    setCookie(
+      'user-token',
+      { id: authData.id_token, token: authData.access_token },
+      {
+        path: '/',
+        expires: authData.expiers_in,
+        secure: true
+      }
+    );
+
+    navigate('/app/user-simple-dashboard');
   };
 
   useEffect(() => {
     if (loginLink !== 'foodtruck-login')
       ReactDOM.render(
         <FacebookLogin
-          appId="229793412653614"
+          appId="481834246806215"
           fields="name,email,picture"
           render={(renderProps: { onClick: any; disabled: boolean | undefined }) => (
             <IconButton

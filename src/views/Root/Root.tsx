@@ -10,27 +10,32 @@ import FoodtruckView from 'views/FoodtruckView/FoodtruckView';
 import Reviews from 'views/FoodtruckView/Reviews';
 import Events from 'views/Events/Events';
 import EventView from 'views/EventView/EventView';
+import { CookiesProvider } from 'react-cookie';
+import SimpleUser from 'views/SimpleUser/SimpleUser';
 
 const Root = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/app/guest" />} />
-        <Route path="/app">
-          <Route path="choose-login" element={<ChooseLogin />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="foodtruck-login" element={<Login />} />
-          <Route path="foodtruck-register" element={<FoodtruckerRegister />} />
-          <Route path="guest" element={<Guest />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="events" element={<Events />} />
-          <Route path=":foodtruckLink" element={<FoodtruckView />} />
-          <Route path=":foodtruckLink/reviews" element={<Reviews />} />
-          <Route path="events/:eventLink" element={<EventView />} />
-        </Route>
-      </Routes>
-    </Router>
+    <CookiesProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/app/guest" />} />
+          <Route path="/app">
+            <Route path="choose-login" element={<ChooseLogin />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="foodtruck-login" element={<Login />} />
+            <Route path="foodtruck-register" element={<FoodtruckerRegister />} />
+            <Route path="guest" element={<Guest />} />
+            <Route path="user-simple-dashboard" element={<SimpleUser />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="events" element={<Events />} />
+            <Route path=":foodtruckLink" element={<FoodtruckView />} />
+            <Route path=":foodtruckLink/reviews" element={<Reviews />} />
+            <Route path="events/:eventLink" element={<EventView />} />
+          </Route>
+        </Routes>
+      </Router>
+    </CookiesProvider>
   );
 };
 

@@ -1,22 +1,22 @@
-import login from 'assets/img/login.svg';
-import register from 'assets/img/register.svg';
+import whiteHeart from 'assets/img/white-awesome-heart.png';
+import account from 'assets/img/account.png';
 import events from 'assets/img/events.svg';
 import contact from 'assets/img/contact.svg';
 import about from 'assets/img/about.svg';
 import { v4 as uuidv4 } from 'uuid';
 
-export const menuLinks = [
+export const authMenuLinks = [
   {
     id: uuidv4(),
-    to: '/app/login',
-    text: 'Zaloguj',
-    svg: login
+    to: '/app/favorites-foodtrucks',
+    text: 'Ulubione Foodtrucki',
+    svg: whiteHeart
   },
   {
     id: uuidv4(),
-    to: '/app/choose-login',
-    text: 'Zarejestruj',
-    svg: register
+    to: '/app/my-account',
+    text: 'Moje Konto',
+    svg: account
   },
   {
     id: uuidv4(),

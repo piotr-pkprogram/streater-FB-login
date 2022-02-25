@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { StyledCheckbox } from './Checkbox.styles';
-import { FilterProp } from 'views/Guest/Guest';
+import { FilterProp } from 'views/Dashboard/Dashboard';
 import { FiltersTypes } from 'hooks/useFoodtrucks';
 
 type Props = {

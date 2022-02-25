@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PhoneMenu from 'components/organisms/PhoneMenu/PhoneMenu';
-import { menuLinks } from 'data/menulinks';
+import { notAuthMenuLinks } from 'data/notAuthMenuLinks';
 import MenuLink from 'components/molecules/MenuLink/MenuLink';
 import { StyledIcon } from 'views/Guest/Guest.styles';
 import logo from 'assets/img/icon.svg';
@@ -32,7 +32,7 @@ const Events = () => {
       {ReactDOM.createPortal(
         <>
           <PhoneMenu>
-            {menuLinks.map(({ id, to, text, svg }) => (
+            {notAuthMenuLinks.map(({ id, to, text, svg }) => (
               <MenuLink key={id} to={to} text={text} svg={svg} />
             ))}
           </PhoneMenu>

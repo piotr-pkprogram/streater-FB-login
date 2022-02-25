@@ -6,6 +6,7 @@ import { useForm } from 'hooks/useForm';
 import { ErrorP } from './Register.styles';
 import { BtnTypes } from 'types/BtnTypes';
 import TextButton from 'components/atoms/TextButton/TextButton';
+import { useNavigate } from 'react-router-dom';
 
 const InitialState: RegisterState = {
   name: '',
@@ -22,13 +23,14 @@ const Register = () => {
     handleInputChange,
     handleSubmitForm
   } = useForm(InitialState);
-
+  const navigate = useNavigate();
   return (
     <LoginViewWrapper
       className="gap-6"
       title="Rejestracja"
       handleSubmitForm={handleSubmitForm}
       loginLink="login"
+      handleGoToBack={() => navigate('/app/choose-login')}
     >
       <Input
         type="text"
