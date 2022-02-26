@@ -112,7 +112,6 @@
     "@storybook/preset-create-react-app": "^4.0.0",
     "@storybook/react": "^6.4.13",
     "@types/leaflet": "^1.7.8",
-    "@types/react-facebook-login": "^4.1.4",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "babel-loader": "^8.2.3",

@@ -13,6 +13,7 @@ import GoogleIcon from 'assets/img/google-icon.svg';
 import FacebookIcon from 'assets/img/facebook-icon.svg';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import { ReactFacebookFailureResponse, ReactFacebookLoginInfo } from 'types/FacebookTypes';
 
 type Props = {
   title: string;
@@ -37,8 +38,19 @@ const LoginViewWrapper = ({
   const [cookies, setCookie] = useCookies(['user-token']);
   const navigate = useNavigate();
 
-  const responseFacebook = (response: Response) => {
-    console.log(response);
+  const responseFacebook = (res: ReactFacebookLoginInfo | ReactFacebookFailureResponse) => {
+    if ('accessToken' in res) {
+      setCookie(
+        'user-token',
+        {
+          id: res.id,
+          token: res.accessToken
+        },
+        { path: '/', expires: new Date(res.data_access_expiration_time), secure: true }
+      );
+    }
+
+    navigate('/app/user-simple-dashboard');
   };
 
   const responseGoogle = (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
