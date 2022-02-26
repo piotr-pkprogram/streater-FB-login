@@ -70,6 +70,7 @@ export const useForm = (initialValues: RegisterState | ContactFormState | LoginS
     dispatch({ type: ActionTypes.clearValues, initialValues });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmitForm = (e: SubmitFormEvent, callbackSendForm: FnSendForm) => {
     e.preventDefault();
     let isFormValid;
@@ -87,6 +88,7 @@ export const useForm = (initialValues: RegisterState | ContactFormState | LoginS
 
     const errorsMessages = e.target.querySelectorAll('p');
     errorsMessages.forEach((msg) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isFormValid = msg.innerHTML === '';
     });
 

@@ -33,6 +33,7 @@ const LoginViewWrapper = ({
 }: Props) => {
   const googleLogin = useRef<HTMLDivElement>(null);
   const facebookLogin = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cookies, setCookie] = useCookies(['user-token']);
   const navigate = useNavigate();
 
