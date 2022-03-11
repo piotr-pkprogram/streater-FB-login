@@ -206,12 +206,12 @@ export const useFoodtrucks = () => {
             b.location.coordinates.longitude
           ]).getLatLng();
 
-          if (from.distanceTo(foodtruckA) < from.distanceTo(foodtruckB)) return 0;
+          if (from.distanceTo(foodtruckA) < from.distanceTo(foodtruckB)) return -1;
           else return 1;
         });
         return sortedFoodtrucks;
       case SortModes.RATES:
-        sortedFoodtrucks = foodtrucks.sort((a, b) => (a.rating >= b.rating ? 0 : 1));
+        sortedFoodtrucks = foodtrucks.sort((a, b) => (a.rating >= b.rating ? -1 : 1));
         return sortedFoodtrucks;
       case SortModes.FAVOURITE:
         return foodtrucks;

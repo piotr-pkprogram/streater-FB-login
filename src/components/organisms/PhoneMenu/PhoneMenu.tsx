@@ -7,14 +7,21 @@ import facebook from 'assets/img/facebook.svg';
 import twitter from 'assets/img/twitter.svg';
 import instagram from 'assets/img/instagram.svg';
 import burgerMenu from 'assets/img/burgerMenu.svg';
+import { useCookies } from 'react-cookie';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
+  userData?: {
+    name: string;
+    token: string;
+    email: string;
+  };
 };
 
-const PhoneMenu = ({ children }: Props) => {
+const PhoneMenu = ({ children, userData }: Props) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const menuWrapper = useRef<HTMLDivElement>(null);
+  const [cookies] = useCookies(['user-token']);
 
   const handleOpen = () => {
     if (!isOpenMenu) {
@@ -50,8 +57,20 @@ const PhoneMenu = ({ children }: Props) => {
         onClick={handleOpen}
       />
       <Wrapper ref={menuWrapper}>
-        <MenuWrapper>
-          <nav className="ml-2 mt-20 grid gap-2 h-max">{children}</nav>
+        <MenuWrapper style={{ gridAutoRows: userData ? '170px auto' : '' }}>
+          {userData ? (
+            <div className="ml-2 grid grid-rows-2 h-full text-white items-center">
+              <p className="font-semibold text-xl">Cześć {userData.name}!</p>
+              <span className="self-start">
+                {cookies['user-token'].userType === 'simple-user'
+                  ? 'Na co masz ochotę? :)'
+                  : 'Jesteś Foodtruckerem'}
+              </span>
+            </div>
+          ) : (
+            ''
+          )}
+          <nav className={`ml-2 ${userData ? '' : 'self-center'} grid gap-2 h-max`}>{children}</nav>
           <div className="flex flex-wrap gap-1 xs:gap-2 xs:p-2 items-center h-min self-end mb-20">
             <IconButton svg={facebook} isExternalLink />
             <IconButton svg={twitter} isExternalLink />

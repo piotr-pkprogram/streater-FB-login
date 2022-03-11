@@ -24,9 +24,14 @@ type Props = {
     text: string;
     svg: string;
   }[];
+  userData?: {
+    name: string;
+    token: string;
+    email: string;
+  };
 };
 
-const Dashboard = ({ menuLinks }: Props) => {
+const Dashboard = ({ menuLinks, userData }: Props) => {
   const [isMapVisible, setIsMapVisible] = useState(true);
   const [foodtrucks, setFoodtrucks] = useState<FoodtruckState[]>([]);
   const [filter, setFilter] = useState<FilterProp | null>();
@@ -82,7 +87,7 @@ const Dashboard = ({ menuLinks }: Props) => {
     <>
       {ReactDOM.createPortal(
         <>
-          <PhoneMenu>
+          <PhoneMenu userData={userData}>
             {menuLinks.map(({ id, to, text, svg }) => (
               <MenuLink key={id} to={to} text={text} svg={svg} />
             ))}

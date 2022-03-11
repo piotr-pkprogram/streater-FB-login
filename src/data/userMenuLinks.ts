@@ -5,7 +5,7 @@ import contact from 'assets/img/contact.svg';
 import about from 'assets/img/about.svg';
 import { v4 as uuidv4 } from 'uuid';
 
-export const authMenuLinks = [
+export const userMenuLinks = [
   {
     id: uuidv4(),
     to: '/app/favorites-foodtrucks',

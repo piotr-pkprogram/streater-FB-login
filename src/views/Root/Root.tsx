@@ -12,6 +12,7 @@ import Events from 'views/Events/Events';
 import EventView from 'views/EventView/EventView';
 import { CookiesProvider } from 'react-cookie';
 import SimpleUser from 'views/SimpleUser/SimpleUser';
+import FoodtruckerUser from 'views/FoodtruckerUser/FoodtruckerUser';
 
 const Root = () => {
   return (
@@ -27,6 +28,7 @@ const Root = () => {
             <Route path="foodtruck-register" element={<FoodtruckerRegister />} />
             <Route path="guest" element={<Guest />} />
             <Route path="user-simple-dashboard" element={<SimpleUser />} />
+            <Route path="foodtrucker-dashboard" element={<FoodtruckerUser />} />
             <Route path="contact" element={<Contact />} />
             <Route path="events" element={<Events />} />
             <Route path=":foodtruckLink" element={<FoodtruckView />} />

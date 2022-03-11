@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Dashboard from 'views/Dashboard/Dashboard';
-import { userMenuLinks } from 'data/userMenuLinks';
+import { foodtruckerMenuLinks } from 'data/foodtruckerMenuLinks';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Guest from 'views/Guest/Guest';
 import axios from 'axios';
+import { UserData } from 'views/SimpleUser/SimpleUser';
 
-export type UserData = {
-  name: string;
-  token: string;
-  email: string;
-};
-
-const SimpleUser = () => {
+const FoodtruckerUser = () => {
   const [cookies] = useCookies(['user-token']);
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData>();
 
   useEffect(() => {
-    if (!cookies['user-token']) navigate('/app/login');
+    if (!cookies['user-token']) navigate('/app/foodtruck-login');
     else {
       (async () => {
         await axios
@@ -32,8 +27,9 @@ const SimpleUser = () => {
     }
   }, [cookies['user-token']]);
 
-  if (cookies['user-token']) return <Dashboard menuLinks={userMenuLinks} userData={userData} />;
+  if (cookies['user-token'])
+    return <Dashboard menuLinks={foodtruckerMenuLinks} userData={userData} />;
   else return <Guest />;
 };
 
-export default SimpleUser;
+export default FoodtruckerUser;
