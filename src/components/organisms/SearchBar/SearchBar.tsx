@@ -10,11 +10,11 @@ import {
   BackWrapper
 } from './SearchBar.styles';
 import IconButton from 'components/atoms/IconButton/IconButton';
-import search from 'assets/img/search.svg';
-import dark_search from 'assets/img/dark-search.svg';
-import burger from 'assets/img/burger.svg';
-import settings from 'assets/img/settings.svg';
-import backArrow from 'assets/img/goldBackArrow.svg';
+import search from 'assets/icons/search.svg';
+import dark_search from 'assets/icons/dark-search.svg';
+import burger from 'assets/icons/burger.svg';
+import settings from 'assets/icons/settings.svg';
+import backArrow from 'assets/icons/goldBackArrow.svg';
 import TextLink from 'components/atoms/TextLink/TextLink';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import SearchResultsListItem from 'components/molecules/SearchResultsListItem/SearchResultsListItem';

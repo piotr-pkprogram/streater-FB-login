@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper, Settings } from './EventsSearchBar.styles';
-import searchBlack from 'assets/img/search-black.svg';
-import settings from 'assets/img/settings.svg';
+import searchBlack from 'assets/icons/search-black.svg';
+import settings from 'assets/icons/settings.svg';
 
 const EventsSearchBar = () => (
   <Wrapper>

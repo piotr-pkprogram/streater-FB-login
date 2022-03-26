@@ -1,8 +1,11 @@
 export const useValidators = (handleThrowError: any) => {
   const validateEmpty = (target: HTMLInputElement | HTMLTextAreaElement) => {
     const inputValue = target.value;
-    // @ts-ignore
-    const placeholder = target.getAttribute('placeholder').toLowerCase();
+    const placeholder =
+      target.getAttribute('placeholder') !== null
+        ? // @ts-ignore
+          target.getAttribute('placeholder').toLowerCase()
+        : document.querySelector(`label[for=${target.getAttribute('id')}]`)?.innerHTML;
     const name = target.name;
 
     if (inputValue === '' || inputValue === undefined || inputValue === null) {

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import SimpleViewWrapper from 'components/templates/SimpleViewWrapper/SimpleViewWrapper';
+import EventFoodtruckViewWrapper from 'components/templates/EventFoodtruckViewWrapper/EventFoodtruckViewWrapper';
 import eventImg from 'assets/img/eventImg.jpg';
 import { useFoodtruckEvents } from 'hooks/useFoodtruckEvents';
 import { FoodtruckEvent } from 'types/FoodtruckEventsTypes';
 import { useParams } from 'react-router-dom';
 import IconButton from 'components/atoms/IconButton/IconButton';
-import arrowDown from 'assets/img/arrowDown.svg';
+import arrowDown from 'assets/icons/arrowDown.svg';
 import { Title } from 'components/atoms/Title/Title';
 import { Wrapper, LocationImg, StyledMapContainer } from './EventView.styles';
-import location from 'assets/img/Icon-metro-location.svg';
+import location from 'assets/icons/Icon-metro-location.svg';
 import { Marker, TileLayer } from 'react-leaflet';
-import dotMaker from 'assets/img/dotIcon.svg';
+import dotMaker from 'assets/icons/dotIcon.svg';
 import L from 'leaflet';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import { useFoodtrucks } from 'hooks/useFoodtrucks';
@@ -62,7 +62,7 @@ const EventView = () => {
   };
 
   return (
-    <SimpleViewWrapper
+    <EventFoodtruckViewWrapper
       img={currentEvent?.image && currentEvent.image !== 'string' ? currentEvent.image : eventImg}
     >
       <Wrapper>
@@ -162,7 +162,7 @@ const EventView = () => {
           </div>
         </div>
       </div>
-    </SimpleViewWrapper>
+    </EventFoodtruckViewWrapper>
   );
 };
 

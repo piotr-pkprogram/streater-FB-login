@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import locationSVG from 'assets/img/location.svg';
+import locationSVG from 'assets/icons/location.svg';
 import FoodtruckListItem from 'components/molecules/FoodtruckListItem/FoodtruckListItem';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 

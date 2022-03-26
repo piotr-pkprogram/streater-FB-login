@@ -1,8 +1,8 @@
-import login from 'assets/img/login.svg';
-import register from 'assets/img/register.svg';
-import events from 'assets/img/events.svg';
-import contact from 'assets/img/contact.svg';
-import about from 'assets/img/about.svg';
+import login from 'assets/icons/login.svg';
+import register from 'assets/icons/register.svg';
+import events from 'assets/icons/events.svg';
+import contact from 'assets/icons/contact.svg';
+import about from 'assets/icons/about.svg';
 import { v4 as uuidv4 } from 'uuid';
 
 export const notAuthMenuLinks = [

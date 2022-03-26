@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { Wrapper, MenuWrapper } from './PhoneMenu.styles';
 import IconButton from 'components/atoms/IconButton/IconButton';
-import close from 'assets/img/close.svg';
-import logo from 'assets/img/icon.svg';
-import facebook from 'assets/img/facebook.svg';
-import twitter from 'assets/img/twitter.svg';
-import instagram from 'assets/img/instagram.svg';
-import burgerMenu from 'assets/img/burgerMenu.svg';
+import close from 'assets/icons/close.svg';
+import logo from 'assets/icons/icon.svg';
+import facebook from 'assets/icons/facebook.svg';
+import twitter from 'assets/icons/twitter.svg';
+import instagram from 'assets/icons/instagram.svg';
+import burgerMenu from 'assets/icons/burgerMenu.svg';
 import { useCookies } from 'react-cookie';
 
 type Props = {

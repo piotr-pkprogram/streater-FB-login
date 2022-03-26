@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dish } from './FoodtruckView.styles';
-import arrowDown from 'assets/img/arrowDown.svg';
-import heart from 'assets/img/heart.svg';
+import arrowDown from 'assets/icons/arrowDown.svg';
+import heart from 'assets/icons/heart.svg';
 import IconButton from 'components/atoms/IconButton/IconButton';
 import { Title } from 'components/atoms/Title/Title';
 import { useFoodtrucks } from 'hooks/useFoodtrucks';
@@ -9,10 +9,10 @@ import { useParams } from 'react-router-dom';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import StarRating from 'components/atoms/StarRating/StarRating';
 import TextLink from 'components/atoms/TextLink/TextLink';
-import locationSVG from 'assets/img/location.svg';
+import locationSVG from 'assets/icons/location.svg';
 import foodtruckImg from 'assets/img/foodTruckImg.jpg';
 import { useQuery } from 'hooks/useQuery';
-import SimpleViewWrapper from 'components/templates/SimpleViewWrapper/SimpleViewWrapper';
+import EventFoodtruckViewWrapper from 'components/templates/EventFoodtruckViewWrapper/EventFoodtruckViewWrapper';
 import { useCookies } from 'react-cookie';
 
 const FoodtruckView = () => {
@@ -36,7 +36,9 @@ const FoodtruckView = () => {
   }, [foodtruckLink]);
 
   return (
-    <SimpleViewWrapper img={currentFoodtruck?.image ? currentFoodtruck.image : foodtruckImg}>
+    <EventFoodtruckViewWrapper
+      img={currentFoodtruck?.image ? currentFoodtruck.image : foodtruckImg}
+    >
       <IconButton
         imgClassName="h-4"
         className="absolute top-2 left-3"
@@ -86,7 +88,7 @@ const FoodtruckView = () => {
           );
         })}
       </div>
-    </SimpleViewWrapper>
+    </EventFoodtruckViewWrapper>
   );
 };
 

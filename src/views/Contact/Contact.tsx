@@ -1,11 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PhoneMenu from 'components/organisms/PhoneMenu/PhoneMenu';
-import { notAuthMenuLinks } from 'data/notAuthMenuLinks';
-import MenuLink from 'components/molecules/MenuLink/MenuLink';
-import { StyledIcon, Wrapper, StyledForm } from './Contact.styles';
-import logo from 'assets/img/icon.svg';
-import contactIcon from 'assets/img/contactIcon.svg';
+import { Wrapper, StyledForm } from './Contact.styles';
+import contactIcon from 'assets/icons/contactIcon.svg';
 import { Title } from 'components/atoms/Title/Title';
 import { useForm } from 'hooks/useForm';
 import { ContactFormState } from 'types/FormTypes';
@@ -13,6 +8,7 @@ import { Input } from 'components/atoms/Input/Input';
 import { ErrorP } from 'views/Login/Login.styles';
 import TextButton from 'components/atoms/TextButton/TextButton';
 import { BtnTypes } from 'types/BtnTypes';
+import SimpleViewsLayout from 'components/templates/SimpleViewsLayout/SimpleViewsLayout';
 
 const InitialState: ContactFormState = {
   name: '',
@@ -27,21 +23,8 @@ const Contact = () => {
     handleSubmitForm
   } = useForm(InitialState);
 
-  const body = document.querySelector('body') as HTMLBodyElement;
-
   return (
-    <>
-      {ReactDOM.createPortal(
-        <>
-          <PhoneMenu>
-            {notAuthMenuLinks.map(({ id, to, text, svg }) => (
-              <MenuLink key={id} to={to} text={text} svg={svg} />
-            ))}
-          </PhoneMenu>
-          <StyledIcon svg={logo} isRouterLink to="/" />
-        </>,
-        body
-      )}
+    <SimpleViewsLayout>
       <Wrapper>
         <img src={contactIcon} alt="" />
         <Title>Pogadajmy</Title>
@@ -79,7 +62,7 @@ const Contact = () => {
           </TextButton>
         </StyledForm>
       </Wrapper>
-    </>
+    </SimpleViewsLayout>
   );
 };
 

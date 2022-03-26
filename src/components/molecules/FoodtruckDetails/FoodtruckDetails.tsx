@@ -6,8 +6,8 @@ import {
 } from 'components/molecules/FoodtruckDetails/FoodtruckDetails.styles';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import StarRating from 'components/atoms/StarRating/StarRating';
-import dishIcon from 'assets/img/dishIcon.svg';
-import locationSVG from 'assets/img/location.svg';
+import dishIcon from 'assets/icons/dishIcon.svg';
+import locationSVG from 'assets/icons/location.svg';
 import L from 'leaflet';
 
 const FoodtruckDetails = forwardRef(

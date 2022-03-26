@@ -10,7 +10,7 @@ import { FiltersTypes, kitchens, SortModes } from 'hooks/useFoodtrucks';
 import Checkbox from 'components/atoms/Checkbox/Checkbox';
 import { FilterProp } from 'views/Dashboard/Dashboard';
 import IconButton from 'components/atoms/IconButton/IconButton';
-import back from 'assets/img/next.svg';
+import back from 'assets/icons/next.svg';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 type Props = {

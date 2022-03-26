@@ -1,10 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import PhoneMenu from 'components/organisms/PhoneMenu/PhoneMenu';
-import { notAuthMenuLinks } from 'data/notAuthMenuLinks';
-import MenuLink from 'components/molecules/MenuLink/MenuLink';
-import { StyledIcon } from 'views/Guest/Guest.styles';
-import logo from 'assets/img/icon.svg';
 import { Title } from 'components/atoms/Title/Title';
 import { Wrapper } from './Events.styles';
 import EventsSearchBar from 'components/organisms/EventsSearchBar/EventsSearchBar';
@@ -14,9 +8,9 @@ import { FoodtruckEvent } from 'types/FoodtruckEventsTypes';
 import '@splidejs/splide/dist/css/splide.min.css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import EventListItem from 'components/molecules/EventListItem/EventListItem';
+import SimpleViewsLayout from 'components/templates/SimpleViewsLayout/SimpleViewsLayout';
 
 const Events = () => {
-  const body = document.querySelector('body') as HTMLBodyElement;
   const { getAllFoodtruckEvents } = useFoodtruckEvents();
   const [foodtruckEvents, setFoodtruckEvents] = useState([]);
 
@@ -28,18 +22,7 @@ const Events = () => {
   }, []);
 
   return (
-    <>
-      {ReactDOM.createPortal(
-        <>
-          <PhoneMenu>
-            {notAuthMenuLinks.map(({ id, to, text, svg }) => (
-              <MenuLink key={id} to={to} text={text} svg={svg} />
-            ))}
-          </PhoneMenu>
-          <StyledIcon svg={logo} isRouterLink to="/" />
-        </>,
-        body
-      )}
+    <SimpleViewsLayout>
       <Wrapper>
         <Title className="font-semibold">Wydarzenia</Title>
         <EventsSearchBar />
@@ -89,7 +72,7 @@ const Events = () => {
           </div>
         </div>
       </Wrapper>
-    </>
+    </SimpleViewsLayout>
   );
 };
 

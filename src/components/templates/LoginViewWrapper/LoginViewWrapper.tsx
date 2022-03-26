@@ -6,11 +6,11 @@ import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 're
 import { Wrapper, BackBtn, StyledForm, StyledSpan } from './LoginViewWrapper.styles';
 import Logo from 'components/atoms/Logo/Logo';
 import TextLink from 'components/atoms/TextLink/TextLink';
-import back from 'assets/img/next.svg';
+import back from 'assets/icons/next.svg';
 import { HandleSubmitForm } from 'types/FormTypes';
 import IconButton from 'components/atoms/IconButton/IconButton';
-import GoogleIcon from 'assets/img/google-icon.svg';
-import FacebookIcon from 'assets/img/facebook-icon.svg';
+import GoogleIcon from 'assets/icons/google-icon.svg';
+import FacebookIcon from 'assets/icons/facebook-icon.svg';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { ReactFacebookFailureResponse, ReactFacebookLoginInfo } from 'types/FacebookTypes';
@@ -54,14 +54,13 @@ const LoginViewWrapper = ({ title, handleSubmitForm, loginLink, className, child
       JSON.stringify({ id: userId, name, email, picture: picture.data.url })
     );
     await axios
-      .post('http://77.55.217.106:48391/api/Auth/register', {
-        Username: email,
-        Password: '1793PK1757!&',
-        Name: name.split(' ')[0],
-        SurName: name.split(' ')[1],
-        Id: userId,
-        ImageProfile: picture.data.url
-      })
+      .post(
+        `http://77.55.217.106:48391/api/Auth/${loginLink.includes('login') ? 'login' : 'register'}`,
+        {
+          Username: email,
+          Password: '1793PK1757!&'
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     if (loginLink === 'foodtruck-register' || loginLink === 'foodtruck-login')
@@ -93,14 +92,19 @@ const LoginViewWrapper = ({ title, handleSubmitForm, loginLink, className, child
       try {
         localStorage.setItem('user-profile', JSON.stringify(res.getBasicProfile()));
         await axios
-          .post('http://77.55.217.106:48391/api/Auth/register', {
-            Username: res.getBasicProfile().getEmail(),
-            Password: '1793PK1757!&',
-            Name: res.getBasicProfile().getName(),
-            SurName: res.getBasicProfile().getFamilyName(),
-            Id: res.getBasicProfile().getId(),
-            ImageProfile: res.getBasicProfile().getImageUrl()
-          })
+          .post(
+            `http://77.55.217.106:48391/api/Auth/${
+              loginLink.includes('login') ? 'login' : 'register'
+            }`,
+            {
+              Username: res.getBasicProfile().getEmail(),
+              Password: '1793PK1757!&'
+              // Name: res.getBasicProfile().getName(),
+              // SurName: res.getBasicProfile().getFamilyName(),
+              // Id: res.getBasicProfile().getId(),
+              // ImageProfile: res.getBasicProfile().getImageUrl()
+            }
+          )
           .then((res) => console.log(res));
         if (loginLink === 'foodtruck-register' || loginLink === 'foodtruck-login')
           navigate('/app/foodtrucker-dashboard');

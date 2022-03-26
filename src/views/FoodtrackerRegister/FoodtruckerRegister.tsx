@@ -68,7 +68,7 @@ const FoodtruckerRegister = () => {
   return (
     <LoginViewWrapper
       title={`Rejestracja ${isFirstStepVisible ? 1 : 2}/2`}
-      loginLink="foodtruck-login"
+      loginLink="foodtruck-register"
       className="gap-6"
       handleGoToBack={isFirstStepVisible ? () => history.back() : handleSwitchInputs}
       handleSubmitForm={handleSubmitForm}

@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import useSupercluster from 'use-supercluster';
 import { Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import dotMaker from 'assets/img/foodtruckDotIcon.svg';
+import dotMaker from 'assets/icons/foodtruckDotIcon.svg';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 
 const icons = {};
@@ -123,6 +123,7 @@ const ShowFoodtrucks = ({ foodtrucks, setCurrentFoodtruck }: Props) => {
                   (el) => el.id === cluster.properties.foodtruckId
                 ) as FoodtruckState;
                 if (!foodtruck.urlName) foodtruck.urlName = foodtruck.id;
+
                 setCurrentFoodtruck(foodtruck as FoodtruckState);
               }
             }}

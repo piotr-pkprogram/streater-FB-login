@@ -7,7 +7,8 @@ import {
   LoginState,
   SubmitFormEvent,
   FnSendForm,
-  ContactFormState
+  ContactFormState,
+  BasicInfoType
 } from 'types/FormTypes';
 import { useValidators } from './useValidators';
 
@@ -39,7 +40,9 @@ const formReducer: Reducer<RegisterState | ContactFormState | LoginState, Reduce
   }
 };
 
-export const useForm = (initialValues: RegisterState | ContactFormState | LoginState) => {
+export const useForm = (
+  initialValues: RegisterState | ContactFormState | LoginState | BasicInfoType
+) => {
   const [formValues, dispatch] = useReducer(formReducer, initialValues);
 
   const handleThrowError = (inputName: string, errorMessage: string) => {

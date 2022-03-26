@@ -1,9 +1,9 @@
 import React from 'react';
 import { FoodtruckEvent } from 'types/FoodtruckEventsTypes';
-import eventImg from 'assets/img/Rectangle 60.jpg';
+import eventImg from 'assets/icons/Rectangle 60.jpg';
 import { getMonthName } from 'helpers/getMonthName';
 import { getWeekDay } from 'helpers/getWeekDay';
-import grayLocation from 'assets/img/gray-location.png';
+import grayLocation from 'assets/icons/gray-location.png';
 import { Wrapper } from './EventListItem.styles';
 
 const EventListItem = ({ event }: { event: FoodtruckEvent }) => {

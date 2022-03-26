@@ -31,14 +31,15 @@ export const kitchens = [
 
 export const getKitchenTypes = (kitchenTypes: KitchenType[]) => {
   return kitchenTypes.map((kitchenType: KitchenType) => {
-    return kitchens[kitchenType - 1];
+    if (typeof kitchenType === 'number') return kitchens[kitchenType - 1];
+    else return kitchenType;
   });
 };
 
 export const useFoodtrucks = () => {
   const getFoodtrucks = useCallback(async () => {
     try {
-      const foodtrucks = await axios.get('http://77.55.217.106:48391/api/Foodtruck');
+      const foodtrucks = await axios.get('http://77.55.217.106:666/api/Foodtruck');
       // let newFoodtrucks = foodtrucks.data.filter((foodtruck: FoodtruckState) => {
       //   return foodtruck.name !== 'string';
       // });
@@ -53,7 +54,7 @@ export const useFoodtrucks = () => {
   }, []);
 
   const getSingleFoodtruck = useCallback(async (id: string) => {
-    let foodtruck: FoodtruckState;
+    let foodtruck: FoodtruckState | undefined;
     const foodtrucks = await getFoodtrucks();
 
     foodtruck = foodtrucks.find((foodtruck: FoodtruckState) => foodtruck?.urlName === id);
@@ -61,7 +62,7 @@ export const useFoodtrucks = () => {
     try {
       if (!foodtruck)
         foodtruck = await axios
-          .get(`http://77.55.217.106:48391/api/Foodtruck/id/${id}`)
+          .get(`http://77.55.217.106:666/api/Foodtruck/id/${id}`)
           .then((res: AxiosResponse<FoodtruckState>) => res.data);
     } catch (e) {
       console.log(e);
@@ -234,7 +235,7 @@ export const useFoodtrucks = () => {
 
     try {
       const data = await fetch(
-        `http://nominatim.openstreetmap.org/search?format=jsonv2&lat=${coordinates.lat}&lon=${coordinates.lng}&zoom=18&addressdetails=1`
+        `http://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coordinates.lat}&lon=${coordinates.lng}&zoom=18&addressdetails=1`
       ).then((data) => data.json());
 
       return data.address;

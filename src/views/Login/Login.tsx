@@ -19,7 +19,7 @@ const Login = () => {
     handleSubmitForm
   } = useForm(InitialState);
 
-  const loginLink = location.pathname.includes('foodtruck') ? 'foodtruck-register' : 'register';
+  const loginLink = location.pathname.includes('foodtruck') ? 'foodtruck-login' : 'login';
 
   return (
     <LoginViewWrapper

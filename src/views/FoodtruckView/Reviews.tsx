@@ -4,10 +4,10 @@ import { useFoodtrucks } from 'hooks/useFoodtrucks';
 import { useParams } from 'react-router-dom';
 import { Dish } from 'views/FoodtruckView/FoodtruckView.styles';
 import IconButton from 'components/atoms/IconButton/IconButton';
-import arrowDown from 'assets/img/arrowDown.svg';
+import arrowDown from 'assets/icons/arrowDown.svg';
 import StarRating from 'components/atoms/StarRating/StarRating';
 import foodtruckImg from 'assets/img/foodTruckImg.jpg';
-import SimpleViewWrapper from 'components/templates/SimpleViewWrapper/SimpleViewWrapper';
+import EventFoodtruckViewWrapper from 'components/templates/EventFoodtruckViewWrapper/EventFoodtruckViewWrapper';
 
 const Reviews = () => {
   const [currentFoodtruck, setCurrentFoodtruck] = useState<FoodtruckState>();
@@ -22,7 +22,9 @@ const Reviews = () => {
   }, [foodtruckLink]);
 
   return (
-    <SimpleViewWrapper img={currentFoodtruck?.image ? currentFoodtruck.image : foodtruckImg}>
+    <EventFoodtruckViewWrapper
+      img={currentFoodtruck?.image ? currentFoodtruck.image : foodtruckImg}
+    >
       <IconButton
         imgClassName="h-4 rotate-90"
         className="absolute top-4 left-2 flex flex-wrap gap-1 items-center"
@@ -51,7 +53,7 @@ const Reviews = () => {
           </Dish>
         ))}
       </div>
-    </SimpleViewWrapper>
+    </EventFoodtruckViewWrapper>
   );
 };
 

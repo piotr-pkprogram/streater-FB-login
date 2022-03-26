@@ -9,6 +9,8 @@ interface ErrorsInputs extends Object {
   city?: string;
   contactPhone?: string;
   message?: string;
+  kitchen?: string;
+  desc?: string;
 }
 
 export type RegisterState = {
@@ -36,6 +38,15 @@ export type ContactFormState = {
   email?: string;
   message?: string;
   password?: string;
+  errorsInputs?: ErrorsInputs;
+};
+
+export type BasicInfoType = {
+  name?: string;
+  contactPhone?: string;
+  city?: string;
+  kitchen?: string;
+  desc?: string;
   errorsInputs?: ErrorsInputs;
 };
 

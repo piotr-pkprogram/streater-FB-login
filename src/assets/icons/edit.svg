@@ -1,0 +1,31 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18.09"
+        height="18.242"
+        viewBox="0 0 18.09 18.242"
+>
+    <g id="Icon_feather-edit" data-name="Icon feather-edit" transform="translate(-2.25 -1.916)">
+        <path
+                id="Path_185"
+                data-name="Path 185"
+                d="M10.421,6H4.649A1.649,1.649,0,0,0,3,7.649V19.192a1.649,1.649,0,0,0,1.649,1.649H16.192a1.649,1.649,0,0,0,1.649-1.649V13.421"
+                transform="translate(0 -1.433)"
+                fill="none"
+                stroke="#ffc92b"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+        />
+        <path
+                id="Path_186"
+                data-name="Path 186"
+                d="M20.657,3.33A1.749,1.749,0,0,1,23.131,5.8L15.3,13.637l-3.3.825.825-3.3Z"
+                transform="translate(-4.053 0)"
+                fill="none"
+                stroke="#ffc92b"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+        />
+    </g>
+</svg>

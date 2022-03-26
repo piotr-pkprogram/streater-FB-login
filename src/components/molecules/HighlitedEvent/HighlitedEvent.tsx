@@ -2,7 +2,7 @@ import React from 'react';
 import { Event, DateWrapper } from './HighlitedEvent.styles';
 import { FoodtruckEvent } from 'types/FoodtruckEventsTypes';
 import evtImg from 'assets/img/events1.jpg';
-import grayLocation from 'assets/img/gray-location.png';
+import grayLocation from 'assets/icons/gray-location.png';
 import { getMonthName } from 'helpers/getMonthName';
 import { Link } from 'react-router-dom';
 

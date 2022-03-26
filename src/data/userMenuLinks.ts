@@ -1,8 +1,8 @@
-import whiteHeart from 'assets/img/white-awesome-heart.png';
-import account from 'assets/img/account.png';
-import events from 'assets/img/events.svg';
-import contact from 'assets/img/contact.svg';
-import about from 'assets/img/about.svg';
+import whiteHeart from 'assets/icons/white-awesome-heart.png';
+import account from 'assets/icons/account.png';
+import events from 'assets/icons/events.svg';
+import contact from 'assets/icons/contact.svg';
+import about from 'assets/icons/about.svg';
 import { v4 as uuidv4 } from 'uuid';
 
 export const userMenuLinks = [

@@ -1,8 +1,8 @@
 import React from 'react';
 import { FoodtruckState } from 'types/Foodtrucktypes';
 import StarRating from 'components/atoms/StarRating/StarRating';
-import locationSVG from 'assets/img/black-location.svg';
-import money from 'assets/img/money.svg';
+import locationSVG from 'assets/icons/black-location.svg';
+import money from 'assets/icons/money.svg';
 import dish from 'assets/img/dish.jpg';
 import { Wrapper, KitchenWrapper } from './FoodtruckListItem.styles';
 import L from 'leaflet';

@@ -31,6 +31,7 @@ const IconButton = ({
     return (
       <Link className={`hover:opacity-70 transition-opacity ${className}`} to={to}>
         <img className={imgClassName} src={svg} alt="" />
+        <span>{children}</span>
       </Link>
     );
   else if (isExternalLink)
@@ -42,6 +43,7 @@ const IconButton = ({
         rel="noopener noreferrer"
       >
         <img className={imgClassName} src={svg} alt="" />
+        <span>{children}</span>
       </a>
     );
   else
@@ -53,7 +55,7 @@ const IconButton = ({
         disabled={disabled}
       >
         <img className={imgClassName} src={svg} alt="" />
-        {children}
+        <span>{children}</span>
       </button>
     );
 };
