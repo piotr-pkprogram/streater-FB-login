@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import IconButton from 'components/atoms/IconButton/IconButton';
 import backArrow from 'assets/icons/goldBackArrow.svg';
 import { FoodtruckState } from 'types/Foodtrucktypes';
@@ -16,12 +16,14 @@ import { StyledIconBtn, Wrapper } from './CreateFoodtruckMenu.styles';
 import { useParams } from 'react-router-dom';
 import BasicInfo from 'views/AdminEdit/BasicInfo/BasicInfo';
 import Localization from 'views/AdminEdit/Localization/Localization';
+import ChangeImage from 'views/AdminEdit/ChangeImage/ChangeImage';
 
 type Props = { foodtruck: FoodtruckState; onCloseClick: () => void };
 
 const CreateFoodtruckMenu = forwardRef(({ foodtruck, onCloseClick }: Props, ref) => {
   const params = useParams();
   const [panelName, setPanelName] = useState<null | string>(null);
+  const backBtn = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
 
   const userLocation = JSON.parse(localStorage.getItem('location') as string) || {
     lat: 52.232855,
@@ -45,14 +47,28 @@ const CreateFoodtruckMenu = forwardRef(({ foodtruck, onCloseClick }: Props, ref)
     }
   }, [params]);
 
+  useEffect(() => {
+    const image = backBtn?.current?.querySelector('img');
+    const createMenu = document.querySelector<HTMLDivElement>('#create-menu');
+
+    if (panelName) {
+      image?.classList.remove('-rotate-90');
+      createMenu?.classList.add('!h-screen');
+    } else {
+      image?.classList.add('-rotate-90');
+      createMenu?.classList.remove('!h-screen');
+    }
+  }, [panelName]);
+
   return (
-    <Wrapper ref={ref}>
+    <Wrapper ref={ref} id="create-menu">
       <div className="flex gap-4">
         <IconButton
           className="h-max"
-          imgClassName="w-5 -rotate-90"
+          imgClassName="w-5 -rotate-90 transition-transform"
           svg={backArrow}
           onClick={onCloseClick}
+          ref={backBtn}
         />
         <div className="text-white grid sm3:grid-cols-2 items-center">
           <img
@@ -122,6 +138,8 @@ const CreateFoodtruckMenu = forwardRef(({ foodtruck, onCloseClick }: Props, ref)
         <BasicInfo />
       ) : panelName === 'location' ? (
         <Localization foodtruck={foodtruck} />
+      ) : panelName === 'image' ? (
+        <ChangeImage foodtruck={foodtruck} />
       ) : (
         ''
       )}

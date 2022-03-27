@@ -78,7 +78,7 @@ const Localization = ({ foodtruck }: { foodtruck: FoodtruckState }) => {
           const newAddress = await getFoodtruckAddress(foodtruck1);
           foodtruck1.location.address = {
             country: newAddress.country,
-            city: newAddress.city,
+            city: newAddress.city ? newAddress.city : newAddress.county,
             district: newAddress.state,
             street: newAddress.road,
             houseNumber: newAddress.house_number,
@@ -107,7 +107,7 @@ const Localization = ({ foodtruck }: { foodtruck: FoodtruckState }) => {
       id: item.place_id,
       address: item.address,
       // @ts-ignore
-      coordinates: { latitude: parseFloat(item.latitude), longitude: parseFloat(item.lon) },
+      coordinates: { lat: parseFloat(item.lat), lng: parseFloat(item.lon) },
       displayName: item.display_name
     }));
     if (newSuggestItems) setSuggestItems(newSuggestItems);
@@ -126,6 +126,7 @@ const Localization = ({ foodtruck }: { foodtruck: FoodtruckState }) => {
           const suggestItem: SuggestItemProps | null | undefined = changes.selectedItem;
           if (suggestItem) {
             changes.inputValue = `${suggestItem.displayName}`;
+            console.log(suggestItem.coordinates);
             refMap.flyTo(suggestItem.coordinates);
           }
         }
