@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Wrapper, MenuWrapper } from './PhoneMenu.styles';
 import IconButton from 'components/atoms/IconButton/IconButton';
-import close from 'assets/icons/close.svg';
+import close from 'assets/icons/close2.svg';
 import logo from 'assets/icons/icon.svg';
 import facebook from 'assets/icons/facebook.svg';
 import twitter from 'assets/icons/twitter.svg';

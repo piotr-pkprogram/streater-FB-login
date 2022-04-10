@@ -16,7 +16,7 @@ export enum SortModes {
   'AMOUT_OF_RATES' = 'Ilość opini'
 }
 
-export const kitchens = [
+export const kitchensTypes = [
   'Pizza',
   'Burgery',
   'Azjatycka',
@@ -31,7 +31,7 @@ export const kitchens = [
 
 export const getKitchenTypes = (kitchenTypes: KitchenType[]) => {
   return kitchenTypes.map((kitchenType: KitchenType) => {
-    if (typeof kitchenType === 'number') return kitchens[kitchenType - 1];
+    if (typeof kitchenType === 'number') return kitchensTypes[kitchenType - 1];
     else return kitchenType;
   });
 };

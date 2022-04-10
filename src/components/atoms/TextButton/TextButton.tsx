@@ -11,6 +11,8 @@ type Props = {
   isExternalLink?: boolean;
   isRouterLink?: boolean;
   children?: JSX.Element | JSX.Element[] | string;
+  disabled?: boolean;
+  id?: string;
 };
 
 const TextButton = ({
@@ -21,15 +23,18 @@ const TextButton = ({
   isDark = false,
   isExternalLink,
   isRouterLink,
-  children
+  children,
+  disabled,
+  id = ''
 }: Props) => {
-  const className = `inline-block border-2 border-lightBlack text-center p-2 text-sm xs:text-base hover:opacity-70 transition-opacity ${
+  const className = `inline-block border-2 border-lightBlack text-center p-2 text-sm xs:text-base hover:opacity-70 transition-opacity disabled:opacity-70 ${
     isDark ? 'bg-lightBlack text-white' : ''
   } ${classNames}`;
 
   if (isExternalLink)
     return (
       <a
+        id={id}
         className={className}
         href={to}
         onClick={onClick}
@@ -41,12 +46,12 @@ const TextButton = ({
     );
   else if (isRouterLink)
     return (
-      <Link className={className} to={to} onClick={onClick}>
+      <Link id={id} className={className} to={to} onClick={onClick}>
         {children}
       </Link>
     );
   return (
-    <button className={className} type={type} onClick={onClick}>
+    <button id={id} className={className} type={type} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );

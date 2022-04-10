@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   FileUploadContainer,
   FormField,
@@ -16,14 +16,40 @@ import { ChangeInputEvent } from 'types/FormTypes';
 interface Props extends React.HTMLAttributes<HTMLInputElement> {
   label: string;
   updateFilesCb: (filesAsArray: Array<File>) => void;
+  imageFile?: File;
   maxFileSizeInBytes?: number;
+  style?: object;
 }
 
 const convertBytesToKB = (bytes: number) => Math.round(bytes / 1000);
 
-const FileInput = ({ label, updateFilesCb, maxFileSizeInBytes = 500000, ...otherProps }: Props) => {
+const FileInput = ({
+  label,
+  updateFilesCb,
+  maxFileSizeInBytes = 500000,
+  style,
+  imageFile,
+  ...otherProps
+}: Props) => {
   const fileInputField = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState({});
+  const [inputDisabled, setInputDisabled] = useState(false);
+  let amountOfFiles = 0;
+
+  useEffect(() => {
+    if (imageFile) {
+      // @ts-ignore
+      files[imageFile.name] = imageFile;
+    }
+  }, []);
+
+  useEffect(() => {
+    for (const key in files) {
+      if (files.hasOwnProperty(key)) ++amountOfFiles;
+    }
+    /*@ts-ignore*/
+    setInputDisabled(otherProps.multiple ? false : amountOfFiles == 1);
+  }, [files]);
 
   const handleUploadBtnClick = () => {
     fileInputField?.current?.click();
@@ -70,9 +96,9 @@ const FileInput = ({ label, updateFilesCb, maxFileSizeInBytes = 500000, ...other
   };
   return (
     <>
-      <FileUploadContainer>
-        <DragDropText>{label}</DragDropText>
-        <UploadFileBtn type="button" onClick={handleUploadBtnClick}>
+      <FileUploadContainer style={style}>
+        <DragDropText inputDisabled={inputDisabled}>{label}</DragDropText>
+        <UploadFileBtn type="button" onClick={handleUploadBtnClick} inputDisabled={inputDisabled}>
           <i>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               {/*<!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->*/}
@@ -91,6 +117,7 @@ const FileInput = ({ label, updateFilesCb, maxFileSizeInBytes = 500000, ...other
           onChange={handleNewFileUpload}
           title=""
           value=""
+          disabled={inputDisabled}
           {...otherProps}
         />
       </FileUploadContainer>
@@ -99,18 +126,14 @@ const FileInput = ({ label, updateFilesCb, maxFileSizeInBytes = 500000, ...other
           {Object.keys(files).map((fileName) => {
             //@ts-ignore
             let file = files[fileName];
-            let isImageFile = file.type.split('/')[0] === 'image';
             return (
               <PreviewContainer key={fileName}>
-                <div className="relative flex flex-wrap">
-                  {isImageFile && (
-                    <ImagePreview
-                      src={URL.createObjectURL(file)}
-                      alt={`file preview ${file.name}`}
-                    />
-                  )}
-                  <FileMetaData isImageFile={isImageFile}>
-                    <span>{file.name}</span>
+                <div className="relative grid">
+                  <ImagePreview src={URL.createObjectURL(file)} alt={`file preview ${file.name}`} />
+                  <FileMetaData>
+                    <span title={file.name}>
+                      {file.name.length < 11 ? file.name : `${file.name.slice(0, 11)} ...`}
+                    </span>
                     <aside>
                       <span>{convertBytesToKB(file.size)} kb</span>
                       <RemoveFileIcon onClick={() => removeFile(fileName)}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import EventsFoodtruckListItem from './EventsFoodtruckListItem';
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   title: 'components/molecules/EventsFoodtruckListItem',
@@ -63,31 +64,46 @@ const Template = (args: object) => (
       menu: {
         dish: [
           {
+            id: uuidv4(),
             name: 'Kebab Tortila Mały',
             description: 'pomidory San Marzano D.O.P, mozzarella, świeża bazylia',
-            prize: 13,
+            prize: 13.0,
             weight: 20,
             volume: 2,
             quantity: 20,
-            isAvailable: true
+            isAvailable: true,
+            DishCategory: '',
+            VeganLevel: 0,
+            SpicyLevel: 2,
+            isDrink: false
           },
           {
+            id: uuidv4(),
             name: 'Tortila Falafel',
-            description: 'pomidory San Marzano D.O.P, mozzarella, salami napoli',
-            prize: 16,
+            description: 'pomidory San Marzano D.O.P, mozzarella',
+            prize: 16.0,
             weight: 20,
             volume: 2,
             quantity: 20,
-            isAvailable: true
+            isAvailable: true,
+            DishCategory: '',
+            VeganLevel: 1,
+            SpicyLevel: 0,
+            isDrink: false
           },
           {
+            id: uuidv4(),
             name: 'Kebab w bułce',
             description: '',
-            prize: 16,
+            prize: 16.0,
             weight: 20,
             volume: 2,
             quantity: 20,
-            isAvailable: true
+            isAvailable: true,
+            DishCategory: '',
+            VeganLevel: 0,
+            SpicyLevel: 1,
+            isDrink: false
           }
         ],
         kitchenType: [1, 2, 3]

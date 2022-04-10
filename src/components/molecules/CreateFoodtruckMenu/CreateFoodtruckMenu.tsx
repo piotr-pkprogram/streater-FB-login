@@ -17,6 +17,8 @@ import { useParams } from 'react-router-dom';
 import BasicInfo from 'views/AdminEdit/BasicInfo/BasicInfo';
 import Localization from 'views/AdminEdit/Localization/Localization';
 import ChangeImage from 'views/AdminEdit/ChangeImage/ChangeImage';
+import Menu from 'views/AdminEdit/Menu/Menu';
+import ParticipationInEvent from 'views/AdminEdit/ParticipationInEvent/ParticipationInEvent';
 
 type Props = { foodtruck: FoodtruckState; onCloseClick: () => void };
 
@@ -67,7 +69,9 @@ const CreateFoodtruckMenu = forwardRef(({ foodtruck, onCloseClick }: Props, ref)
           className="h-max"
           imgClassName="w-5 -rotate-90 transition-transform"
           svg={backArrow}
-          onClick={onCloseClick}
+          onClick={
+            location.pathname.includes('my-foodtrucks') ? onCloseClick : () => history.back()
+          }
           ref={backBtn}
         />
         <div className="text-white grid sm3:grid-cols-2 items-center">
@@ -126,11 +130,7 @@ const CreateFoodtruckMenu = forwardRef(({ foodtruck, onCloseClick }: Props, ref)
           >
             UDZIAŁ W WYDARZENIU
           </StyledIconBtn>
-          <StyledIconBtn
-            svg={error}
-            isRouterLink
-            to={`/app/${foodtruck.urlName ? foodtruck.urlName : foodtruck.id}/admin-edit/problems`}
-          >
+          <StyledIconBtn svg={error} isRouterLink to={`/app/contact-problems`}>
             ZGŁOŚ PROBLEM
           </StyledIconBtn>
         </div>
@@ -140,6 +140,10 @@ const CreateFoodtruckMenu = forwardRef(({ foodtruck, onCloseClick }: Props, ref)
         <Localization foodtruck={foodtruck} />
       ) : panelName === 'image' ? (
         <ChangeImage foodtruck={foodtruck} />
+      ) : panelName === 'menu' ? (
+        <Menu foodtruck={foodtruck} />
+      ) : panelName === 'events' ? (
+        <ParticipationInEvent foodtruck={foodtruck} />
       ) : (
         ''
       )}

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div.attrs({
   className:
-    'fixed left-0 top-0 h-screen w-screen xs:w-76 z-20 grid grid-flow-col -translate-x-full max-w-screen'
+    'fixed left-0 top-0 h-screen w-screen xs:w-76 z-30 grid grid-flow-col -translate-x-full max-w-screen'
 })`
   grid-template-columns: auto max-content;
 `;

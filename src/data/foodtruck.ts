@@ -1,5 +1,6 @@
 import dish from 'assets/img/dish.jpg';
 import { FoodtruckState } from 'types/Foodtrucktypes';
+import { v4 as uuidv4 } from 'uuid';
 
 export const foodtruckExample: FoodtruckState = {
   id: '06294cef-7368-41bf-99e6-de0683834a07',
@@ -36,22 +37,32 @@ export const foodtruckExample: FoodtruckState = {
   menu: {
     dish: [
       {
+        id: uuidv4(),
         name: 'Pad Thai kurczak',
         description: 'Składniki',
         prize: 22,
         weight: 0,
         volume: 0,
         quantity: 0,
-        isAvailable: true
+        isAvailable: true,
+        DishCategory: '',
+        VeganLevel: 0,
+        SpicyLevel: 0,
+        isDrink: false
       },
       {
+        id: uuidv4(),
         name: 'Stir Fry',
         description: 'Składniki',
         prize: 26,
         weight: 0,
         volume: 0,
         quantity: 0,
-        isAvailable: true
+        isAvailable: true,
+        DishCategory: '',
+        VeganLevel: 0,
+        SpicyLevel: 0,
+        isDrink: false
       }
     ],
     kitchenType: ['Tajska']

@@ -1,42 +1,68 @@
 import React, { ChangeEvent, useState } from 'react';
-import { StyledCheckbox } from './Checkbox.styles';
-import { FilterProp } from 'views/Dashboard/Dashboard';
-import { FiltersTypes } from 'hooks/useFoodtrucks';
+import { Checkbox as MuiCheckbox } from '@mui/material';
 
 type Props = {
   label: string;
   opt: string;
-  setFilter?: (filter: FilterProp | null) => void;
-  index?: number;
+  handleChecked?: (e: ChangeEvent<HTMLInputElement>) => void;
+  isFormField?: boolean;
+  className?: string;
+  checked?: boolean;
 };
 
-let kitchens: string[] = [];
-const Checkbox = ({ label, opt, setFilter, index }: Props) => {
-  const [isCheckboxCheck, setIsCheckboxCheck] = useState(false);
+const Checkbox = ({
+  label,
+  opt,
+  handleChecked,
+  isFormField,
+  className,
+  checked = false
+}: Props) => {
+  const [isCheckboxCheck, setIsCheckboxCheck] = useState(checked);
 
   const onCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     setIsCheckboxCheck(e.target.checked);
-    if (setFilter) {
-      if (e.target.checked) kitchens[index as number] = opt;
-      else delete kitchens[index as number];
-
-      if (kitchens.length > 0)
-        setFilter({
-          type: FiltersTypes.kitchen_type,
-          value: kitchens
-        });
-      else setFilter(null);
+    if (handleChecked) {
+      handleChecked(e);
     }
   };
 
-  return (
+  return isFormField ? (
     <>
-      <StyledCheckbox
+      <label className="text-gold font-semibold cursor-pointer" htmlFor={opt}>
+        {label}
+      </label>
+      <MuiCheckbox
         id={opt}
+        name={opt}
         size="small"
+        className={className}
         checked={isCheckboxCheck}
         onChange={onCheckboxChange}
         aria-label="controlled"
+        sx={{
+          color: '#fff',
+          '&.Mui-checked': {
+            color: '#fff'
+          }
+        }}
+      />
+    </>
+  ) : (
+    <>
+      <MuiCheckbox
+        id={opt}
+        size="small"
+        className={className}
+        checked={isCheckboxCheck}
+        onChange={onCheckboxChange}
+        aria-label="controlled"
+        sx={{
+          color: '#FFC92B',
+          '&.Mui-checked': {
+            color: '#FFC92B'
+          }
+        }}
       />
       <label className="text-sm text-gray-500 font-semibold cursor-pointer" htmlFor={opt}>
         {label}

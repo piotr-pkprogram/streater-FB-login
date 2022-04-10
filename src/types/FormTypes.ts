@@ -4,6 +4,7 @@ interface ErrorsInputs extends Object {
   name?: string;
   surname?: string;
   email?: string;
+  topic?: string;
   password?: string;
   foodtruckName?: string;
   city?: string;
@@ -36,6 +37,7 @@ export type LoginState = {
 export type ContactFormState = {
   name?: string;
   email?: string;
+  topic?: string;
   message?: string;
   password?: string;
   errorsInputs?: ErrorsInputs;
@@ -75,3 +77,8 @@ export interface SubmitFormEvent extends SubmitEvent {
 export type FnSendForm = (formState: RegisterState | LoginState) => void;
 
 export type HandleSubmitForm = (e: SubmitFormEvent, callbackSendForm: FnSendForm) => void;
+
+export type ResError = {
+  status: number;
+  isOfflineError: boolean;
+};

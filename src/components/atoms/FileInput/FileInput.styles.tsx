@@ -32,15 +32,16 @@ export const FormField = styled.input`
   }
 `;
 
-export const DragDropText = styled.p`
+export const DragDropText = styled.p.attrs({ className: 'transition-opacity' })`
   font-weight: bold;
   letter-spacing: 2.2px;
   margin-top: 0;
   text-align: center;
   margin-bottom: 10px;
+  opacity: ${(props: { inputDisabled: boolean }) => (props.inputDisabled ? 0.5 : 1)};
 `;
 
-export const UploadFileBtn = styled.button`
+export const UploadFileBtn = styled.button.attrs({ className: 'transition-opacity' })`
   box-sizing: border-box;
   appearance: none;
   background-color: transparent;
@@ -59,11 +60,12 @@ export const UploadFileBtn = styled.button`
   z-index: 1;
   transition: color 250ms ease-in-out;
   font-family: 'Open Sans', sans-serif;
-  width: 45%;
+  width: 200px;
   display: flex;
   align-items: center;
   padding-right: 0;
   justify-content: center;
+  opacity: ${(props: { inputDisabled: boolean }) => (props.inputDisabled ? 0.5 : 1)};
 
   &:after {
     content: '';
@@ -146,7 +148,7 @@ export const PreviewList = styled.section`
 export const FileMetaData = styled.div.attrs({
   className: 'opacity-0 hover:opacity-100 transition-opacity'
 })`
-  display: ${(props: { isImageFile: boolean }) => (props.isImageFile ? 'none' : 'flex')};
+  display: flex;
   flex-direction: column;
   position: absolute;
   top: 0;
@@ -158,6 +160,7 @@ export const FileMetaData = styled.div.attrs({
   color: white;
   font-weight: bold;
   background-color: rgba(5, 5, 5, 0.55);
+  width: 100%;
 
   aside {
     margin-top: auto;
@@ -176,9 +179,9 @@ export const RemoveFileIcon = styled.i.attrs({ className: 'transition-transform'
 
 export const PreviewContainer = styled.section`
   padding: 0.25rem;
-  height: 125px;
   border-radius: 6px;
   box-sizing: border-box;
+  width: 100%;
 
   &:hover {
     opacity: 0.55;
@@ -193,22 +196,13 @@ export const PreviewContainer = styled.section`
     position: relative;
   }
 
-  @media only screen and (max-width: 750px) {
-    width: 30%;
-  }
-
-  @media only screen and (max-width: 500px) {
-    width: 50%;
-  }
-
   @media only screen and (max-width: 400px) {
-    width: 100%;
     padding: 0 0 0.4em;
   }
 `;
 
 export const ImagePreview = styled.img`
   border-radius: 6px;
-  width: 100%;
-  height: 100%;
+  width: 125px;
+  height: 125px;
 `;

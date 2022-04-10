@@ -9,8 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 import ReactDOM from 'react-dom';
 import CreateFoodtruckMenu from 'components/molecules/CreateFoodtruckMenu/CreateFoodtruckMenu';
 import { FoodtruckState } from 'types/Foodtrucktypes';
+import dishIcon from 'assets/img/dish.jpg';
 
-const foodtruck = {
+const foodtruck: FoodtruckState = {
   id: uuidv4(),
   name: 'Bafra Kebab Smolec',
   description: 'Foodtruck z Kebabem Smolec',
@@ -65,34 +66,66 @@ const foodtruck = {
   menu: {
     dish: [
       {
+        id: uuidv4(),
         name: 'Kebab Tortila Mały',
         description: 'pomidory San Marzano D.O.P, mozzarella, świeża bazylia',
         prize: 13.0,
         weight: 20,
         volume: 2,
         quantity: 20,
-        isAvailable: true
+        isAvailable: true,
+        DishCategory: 2,
+        VeganLevel: 0,
+        SpicyLevel: 2,
+        isDrink: false
       },
       {
+        id: uuidv4(),
         name: 'Tortila Falafel',
-        description: 'pomidory San Marzano D.O.P, mozzarella, salami napoli',
+        description: 'pomidory San Marzano D.O.P, mozzarella',
         prize: 16.0,
         weight: 20,
         volume: 2,
         quantity: 20,
-        isAvailable: true
+        isAvailable: true,
+        DishCategory: 3,
+        image: `http://localhost:3000${dishIcon}`,
+        VeganLevel: 1,
+        SpicyLevel: 0,
+        isDrink: false
       },
       {
+        id: uuidv4(),
         name: 'Kebab w bułce',
         description: '',
         prize: 16.0,
         weight: 20,
         volume: 2,
         quantity: 20,
-        isAvailable: true
+        isAvailable: true,
+        DishCategory: 2,
+        VeganLevel: 0,
+        SpicyLevel: 1,
+        isDrink: false
       }
     ],
-    kitchenType: [1, 2, 3]
+    kitchenType: [1, 2, 3],
+    dishCategories: [
+      {
+        name: 'Pizza'
+      },
+      {
+        name: 'Curry'
+      },
+      {
+        name: 'Kebab',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At enim mollitia praesentium quas saepe tempore.'
+      },
+      {
+        name: 'Tortila'
+      }
+    ]
   },
   pictures: ['string'],
   isOpen: true,

@@ -9,3 +9,20 @@ body {
   font-family: 'Noto Sans', sans-serif;
   font-size: 16px;
 }
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  font-family: 'Noto Sans', sans-serif !important;
+  color: #ffffff !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #ffc92b !important;
+}
+
+.css-1aquho2-MuiTabs-indicator {
+  background-color: #ffc92b !important;
+}
+
+.css-8x3pc-MuiNativeSelect-icon {
+  top: calc(50% - 0.40em) !important;
+}

@@ -29,6 +29,7 @@ export interface OpeningTime {
 }
 
 export interface Dish {
+  id: string;
   name: string;
   description: string;
   prize: number;
@@ -37,6 +38,10 @@ export interface Dish {
   quantity: number;
   isAvailable: boolean;
   image?: string | null;
+  DishCategory: number | string;
+  VeganLevel: 0 | 1 | 2;
+  SpicyLevel: 0 | 1 | 2 | 3;
+  isDrink: boolean;
 }
 
 export interface Comments {
@@ -60,6 +65,11 @@ export enum KitchenType {
   Gluten_free = 10
 }
 
+export type Category = {
+  name: string;
+  description?: string;
+};
+
 export type FoodtruckState = {
   id: string;
   name: string;
@@ -69,6 +79,7 @@ export type FoodtruckState = {
   menu: {
     dish: Array<Dish>;
     kitchenType: Array<KitchenType> | Array<string>;
+    dishCategories?: Category[];
   };
   pictures: Array<string>;
   isOpen: boolean;

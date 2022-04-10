@@ -7,7 +7,3 @@ export const Wrapper = styled.div.attrs({
   --tw-border-opacity: 0.2;
   grid-auto-columns: max-content auto max-content;
 `;
-
-export const Settings = styled.img.attrs({
-  className: 'h-auto w-8 cursor-pointer hover:opacity-70 transition-opacity'
-})``;

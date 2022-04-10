@@ -6,7 +6,7 @@ import {
   Wrapper,
   StyledLink
 } from './SearchFilter.styles';
-import { FiltersTypes, kitchens, SortModes } from 'hooks/useFoodtrucks';
+import { FiltersTypes, kitchensTypes, SortModes } from 'hooks/useFoodtrucks';
 import Checkbox from 'components/atoms/Checkbox/Checkbox';
 import { FilterProp } from 'views/Dashboard/Dashboard';
 import IconButton from 'components/atoms/IconButton/IconButton';
@@ -20,6 +20,7 @@ type Props = {
   setSortMode: (mode: SortModes) => void;
 };
 
+let kitchens: string[] = [];
 const SearchFilter = forwardRef(({ setFilter, setVisible, SortMode, setSortMode }: Props, ref) => {
   const [isFilterVisible, setFilterVisible] = useState(false);
   const [isSortVisible, setSortVisible] = useState(false);
@@ -39,6 +40,20 @@ const SearchFilter = forwardRef(({ setFilter, setVisible, SortMode, setSortMode 
       type: FiltersTypes.closeOpen,
       value: isSwitchCheck ? 'close' : 'open'
     });
+  };
+
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>, index: number, opt: string) => {
+    if (setFilter) {
+      if (e.target.checked) kitchens[index as number] = opt;
+      else delete kitchens[index as number];
+
+      if (kitchens.length > 0)
+        setFilter({
+          type: FiltersTypes.kitchen_type,
+          value: kitchens
+        });
+      else setFilter(null);
+    }
   };
 
   const handleSelectChange = (evt: SelectChangeEvent) => {
@@ -116,14 +131,15 @@ const SearchFilter = forwardRef(({ setFilter, setVisible, SortMode, setSortMode 
               Rodzaje Kuchni
             </FilterType>
             <ul className="ml-3">
-              {kitchens.map((kitchen, i) => {
+              {kitchensTypes.map((kitchen, i) => {
                 return (
                   <li key={i}>
                     <Checkbox
                       label={kitchen.replaceAll('_', ' ')}
                       opt={`${kitchen}`.toLowerCase()}
-                      setFilter={setFilter}
-                      index={i}
+                      handleChecked={(e: ChangeEvent<HTMLInputElement>) =>
+                        handleCheck(e, i, `${kitchen}`.toLowerCase())
+                      }
                     />
                   </li>
                 );

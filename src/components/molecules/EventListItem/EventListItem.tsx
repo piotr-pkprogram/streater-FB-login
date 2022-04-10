@@ -6,12 +6,19 @@ import { getWeekDay } from 'helpers/getWeekDay';
 import grayLocation from 'assets/icons/gray-location.png';
 import { Wrapper } from './EventListItem.styles';
 
-const EventListItem = ({ event }: { event: FoodtruckEvent }) => {
+const EventListItem = ({
+  event,
+  className = ''
+}: {
+  event: FoodtruckEvent;
+  className?: string;
+}) => {
   if (!event.urlName || event.urlName === 'string') event.urlName = event.id;
 
   return (
-    <Wrapper to={`/app/events/${event.urlName}`}>
+    <Wrapper className={className} to={`/app/events/${event.urlName}`}>
       <img
+        className={'rounded-md'}
         src={event.image && event.image !== 'string' ? event.image : eventImg}
         alt=""
         width={76}

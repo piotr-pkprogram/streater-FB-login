@@ -185,7 +185,7 @@ const Localization = ({ foodtruck }: { foodtruck: FoodtruckState }) => {
         {isOpen && suggestItems.length > 0
           ? suggestItems.map((item, index) => (
               <p
-                className={`flex gap-2 w-full items-center ${
+                className={`flex gap-2 w-full items-center transition-colors cursor-pointer ${
                   highlightedIndex === index ? 'bg-darkBlack' : ''
                 }`}
                 key={item.id}
